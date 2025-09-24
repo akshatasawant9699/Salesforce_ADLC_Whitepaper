@@ -1,0 +1,5 @@
+---
+description: never add emojis in code.
+globs: 
+alwaysApply: true
+---
