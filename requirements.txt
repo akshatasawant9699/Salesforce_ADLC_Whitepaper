@@ -1,0 +1,3 @@
+agentforce-sdk
+salesforce-cli
+pyyaml
