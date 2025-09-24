@@ -255,7 +255,7 @@ def main():
         print("Error getting org info from Salesforce CLI:")
         print(e.stderr)
         print("Using fallback credentials...")
-        org_url = "https://resorts-demo.my.salesforce.com"
+        org_url = "https://your-org.my.salesforce.com"
         access_token = "your_access_token_here"
     
     agent = ResortManagerAgent(org_url, access_token)
