@@ -348,33 +348,6 @@ def verify_deployment():
     print("✅ All custom objects verified successfully")
     return True
 
-def insert_sample_data():
-    """Insert sample data for testing"""
-    print("📊 Inserting sample data...")
-    
-    sample_data = [
-        {
-            "object": "Reservation__c",
-            "values": "Name=RES-0001"
-        },
-        {
-            "object": "Activity__c", 
-            "values": "Name=ACT-0001"
-        },
-        {
-            "object": "Employee__c",
-            "values": "Name=EMP-0001"
-        }
-    ]
-    
-    for data in sample_data:
-        result = run_command(f'sf data create record --sobject {data["object"]} --values "{data["values"]}" --target-org resorts-demo', f"Creating sample {data['object']}")
-        if result:
-            print(f"✅ Sample {data['object']} created")
-        else:
-            print(f"⚠️  Sample {data['object']} creation failed (this is optional)")
-    
-    print("✅ Sample data insertion completed")
 
 def main():
     """Main execution function"""
@@ -404,8 +377,6 @@ def main():
         print("❌ Verification failed. Please check the deployment logs.")
         return False
     
-    # Insert sample data
-    insert_sample_data()
     
     print("\n🎉 Custom Objects Setup Complete!")
     print("=" * 50)

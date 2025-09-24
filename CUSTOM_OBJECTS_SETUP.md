@@ -61,14 +61,6 @@ sf data query --query "SELECT Id, Name FROM Activity__c LIMIT 1" --target-org re
 sf data query --query "SELECT Id, Name FROM Employee__c LIMIT 1" --target-org resorts-demo
 ```
 
-#### 4. Insert Sample Data (Optional)
-
-```bash
-# Insert sample data for testing
-sf data create record --sobject Reservation__c --values "Name=RES-0001" --target-org resorts-demo
-sf data create record --sobject Activity__c --values "Name=ACT-0001" --target-org resorts-demo
-sf data create record --sobject Employee__c --values "Name=EMP-0001" --target-org resorts-demo
-```
 
 ## Object Schema
 
