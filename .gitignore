@@ -1,0 +1,47 @@
+# Salesforce CLI cache
+.sf/
+.sfdx/
+
+# Generated preview files
+Resort_Manager_Preview_*.json
+
+# Cursor IDE files
+.cursor/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Credentials and secrets
+*.env
+.env
+secrets.json
+credentials.json
+
+# Old implementation files (not part of main implementation)
+create_objects_cli.py
+create_objects_metadata.py
+insert_sample_data.py
