@@ -35,7 +35,7 @@ sf agent generate agent-spec
 
 ## Phase 2: Development
 
-### 1. Create Agent from Specification
+### 2.1 Agent Creation
 ```bash
 # Create the agent using the spec file
 sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name Resort_Manager --target-org resorts-demo --preview
@@ -43,7 +43,7 @@ sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name R
 
 This will create a new Agent Resort Manager using Spec agentSpec.yaml and the preview can be viewed in .json file Resort_Manager_Preview<timestamp>.json
 
-### 2. Custom Objects Setup
+### 2.2 Custom Objects Setup
 ```bash
 # Automated setup (recommended)
 python3 setup_custom_objects.py
@@ -56,14 +56,14 @@ This creates:
 - Activity__c object  
 - Employee__c object
 
-## Phase 3: Python SDK Implementation
+### 2.3 Python SDK Implementation
 
-### 1. Install Dependencies
+#### Install Dependencies
 ```bash
 pip3 install -r requirements.txt
 ```
 
-### 2. Run Resort Manager Agent
+#### Run Resort Manager Agent
 ```bash
 # Run the main agent implementation
 python3 resort_manager_agent.py
@@ -72,7 +72,7 @@ python3 resort_manager_agent.py
 python3 demo_resort_agent.py
 ```
 
-### 3. Agent Capabilities
+#### Agent Capabilities
 - Customer Complaint Resolution with Salesforce integration
 - Employee Schedule Management via API calls
 - Reservation System Support with real-time data
@@ -86,11 +86,10 @@ python3 demo_resort_agent.py
 - ✅ Files: `specs/agentSpec.yaml` created
 
 ### Phase 2 Complete
+- ✅ Agent created successfully in Salesforce
 - ✅ Custom objects created successfully in Salesforce
 - ✅ Objects accessible via Salesforce CLI
 - ✅ Metadata deployment successful
-
-### Phase 3 Complete
 - ✅ Python SDK implementation with realistic APIs
 - ✅ RAG integration for knowledge base
 - ✅ Salesforce data integration working
