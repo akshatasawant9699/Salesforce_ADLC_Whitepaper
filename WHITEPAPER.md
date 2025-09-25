@@ -91,6 +91,50 @@ python3 e2e_test_scenarios.py > e2e_test_report.json
 python3 adversarial_testing.py > adversarial_test_report.json
 ```
 
+## Phase 4: Deployment & Release
+
+### Agent Deployment
+```bash
+# Deploy agent metadata to target org
+sf project deploy start --manifest manifests/Agents.package.xml --target-org resorts-demo
+
+# Deploy agent tests
+sf project deploy start --manifest manifests/AgentTests.package.xml --target-org resorts-demo
+
+# Deploy custom objects
+sf project deploy start --source-dir force-app/main/default/objects --target-org resorts-demo
+
+# Open agent in Agentforce Builder UI
+sf org open agent --api-name Resort_Manager --target-org resorts-demo
+```
+
+### Release Management
+```bash
+# Run comprehensive deployment
+python3 deploy_agent.py
+
+# Run release management
+python3 release_management.py
+
+# Run complete Phase 4 orchestration
+python3 phase4_deployment.py
+```
+
+### Production Deployment Commands
+```bash
+# Deploy agent metadata
+sf project deploy start --manifest manifests/Agents.package.xml --target-org production
+
+# Deploy custom objects
+sf project deploy start --source-dir force-app/main/default/objects --target-org production
+
+# Deploy tests
+sf project deploy start --manifest manifests/AgentTests.package.xml --target-org production
+
+# Verify deployment
+sf data query --query "SELECT Id, Name FROM Bot WHERE DeveloperName = 'Resort_Manager'" --target-org production
+```
+
 ## Success Criteria
 
 ### Phase 1 Complete
@@ -116,6 +160,15 @@ python3 adversarial_testing.py > adversarial_test_report.json
 - Security vulnerability assessment
 - Production readiness validation
 
+### Phase 4 Complete
+- Agent metadata deployed to production org
+- Custom objects deployed to production org
+- Agent tests deployed to production org
+- Production validation completed
+- Release management implemented
+- Version control integration completed
+- Production deployment verified
+
 ## Key Files Generated
 - `specs/agentSpec.yaml` - Agent specification
 - `resort_manager_agent.py` - Main agent implementation
@@ -124,8 +177,13 @@ python3 adversarial_testing.py > adversarial_test_report.json
 - `e2e_test_scenarios.py` - End-to-end testing scenarios
 - `adversarial_testing.py` - Security and adversarial testing
 - `test_runner.py` - Comprehensive test orchestration
+- `deploy_agent.py` - Agent deployment framework
+- `release_management.py` - Release management system
+- `phase4_deployment.py` - Phase 4 orchestration
+- `manifests/Agents.package.xml` - Agent metadata manifest
+- `manifests/AgentTests.package.xml` - Agent tests manifest
 - `requirements.txt` - Python dependencies with testing frameworks
 - `force-app/main/default/objects/` - Custom object metadata
 - Custom objects deployed to Salesforce org
 
-**All 3 Phases Complete - Production-Ready Resort Manager Agent with Comprehensive Testing!**
+**All 4 Phases Complete - Production-Ready Resort Manager Agent with Full Deployment!**
