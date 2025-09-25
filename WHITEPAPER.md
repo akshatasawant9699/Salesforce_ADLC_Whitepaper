@@ -98,8 +98,14 @@ python3 adversarial_testing.py > adversarial_test_report.json
 # Deploy custom objects (working)
 sf project deploy start --source-dir force-app/main/default/objects --target-org resorts-demo
 
-# Create agent using Salesforce CLI (recommended)
+# Create agent using Salesforce CLI (recommended approach)
 sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name Resort_Manager --target-org resorts-demo --preview
+
+# Alternative: Create agent manually in Salesforce UI
+# 1. Go to Setup > Einstein Agent > Agents
+# 2. Click "New Agent"
+# 3. Use the agentSpec.yaml content as reference
+# 4. Configure topics and actions manually
 
 # Open agent in Agentforce Builder UI
 sf org open agent --api-name Resort_Manager --target-org resorts-demo
@@ -129,6 +135,9 @@ sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name R
 sf data query --query "SELECT Id, Name FROM Reservation__c LIMIT 1" --target-org resorts-demo
 sf data query --query "SELECT Id, Name FROM Activity__c LIMIT 1" --target-org resorts-demo
 sf data query --query "SELECT Id, Name FROM Employee__c LIMIT 1" --target-org resorts-demo
+
+# Note: Bot metadata deployment via manifest requires specific Salesforce features
+# Use sf agent create command or manual UI creation for agent deployment
 ```
 
 ## Success Criteria
