@@ -4,21 +4,19 @@
 ```bash
 # Python 3.9+ required
 python3 --version
-pip3 install pyyaml agentforce-sdk
+pip3 install -r requirements.txt
 
 # Salesforce CLI required
 sf --version
 sf org list
 ```
 
-> **Note**: Custom objects setup is detailed in [CUSTOM_OBJECTS_SETUP.md](CUSTOM_OBJECTS_SETUP.md)
-
 ## Phase 1: Ideation & Design
 
-### 1. Agent Specification Creation
+### Agent Specification Creation
 ```bash
-# Navigate to project
-cd /Users/akshata.sawant/SF_ADLC_Whitepaper
+# Navigate to project directory
+cd /path/to/SF_ADLC_Whitepaper
 
 # Install dependencies
 pip3 install pyyaml
@@ -35,36 +33,25 @@ sf agent generate agent-spec
 
 ## Phase 2: Development
 
-### 2.1 Agent Creation
+### Agent Creation
 ```bash
 # Create the agent using the spec file
 sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name Resort_Manager --target-org resorts-demo --preview
 ```
 
-This will create a new Agent Resort Manager using Spec agentSpec.yaml and the preview can be viewed in .json file Resort_Manager_Preview<timestamp>.json
-
-### 2.2 Custom Objects Setup
+### Custom Objects Setup
 ```bash
 # Automated setup (recommended)
 python3 setup_custom_objects.py
 
-# Or see [CUSTOM_OBJECTS_SETUP.md](CUSTOM_OBJECTS_SETUP.md) for manual steps
+# Or see CUSTOM_OBJECTS_SETUP.md for manual steps
 ```
 
-This creates:
-- Reservation__c object
-- Activity__c object  
-- Employee__c object
-
-### 2.3 Python SDK Implementation
-
-#### Install Dependencies
+### Python SDK Implementation
 ```bash
+# Install dependencies
 pip3 install -r requirements.txt
-```
 
-#### Run Resort Manager Agent
-```bash
 # Run the main agent implementation
 python3 resort_manager_agent.py
 
@@ -72,47 +59,73 @@ python3 resort_manager_agent.py
 python3 demo_resort_agent.py
 ```
 
-#### Agent Capabilities
-- Customer Complaint Resolution with Salesforce integration
-- Employee Schedule Management via API calls
-- Reservation System Support with real-time data
-- Activity Recommendations using RAG
-- Service Quality Monitoring with knowledge base
+## Phase 3: Testing & Validation
+
+### Comprehensive Testing Framework
+```bash
+# Install testing dependencies
+pip3 install -r requirements.txt
+
+# Run comprehensive test suite
+python3 test_runner.py
+
+# Run individual test components
+python3 test_resort_agent.py
+python3 e2e_test_scenarios.py
+python3 adversarial_testing.py
+```
+
+### Testing Commands
+```bash
+# Comprehensive testing suite
+python3 test_runner.py
+
+# Individual test suites
+python3 -m pytest test_resort_agent.py -v
+python3 e2e_test_scenarios.py
+python3 adversarial_testing.py
+
+# Generate detailed test reports
+python3 test_runner.py > comprehensive_test_report.json
+python3 e2e_test_scenarios.py > e2e_test_report.json
+python3 adversarial_testing.py > adversarial_test_report.json
+```
 
 ## Success Criteria
 
 ### Phase 1 Complete
-- ✅ Agent specification generated via `sf agent generate agent-spec`
-- ✅ Files: `specs/agentSpec.yaml` created
+- Agent specification generated via `sf agent generate agent-spec`
+- Files: `specs/agentSpec.yaml` created
 
 ### Phase 2 Complete
-- ✅ Agent created successfully in Salesforce
-- ✅ Custom objects created successfully in Salesforce
-- ✅ Objects accessible via Salesforce CLI
-- ✅ Metadata deployment successful
-- ✅ Python SDK implementation with realistic APIs
-- ✅ RAG integration for knowledge base
-- ✅ Salesforce data integration working
-- ✅ Agent ready for production deployment
+- Agent created successfully in Salesforce
+- Custom objects created successfully in Salesforce
+- Objects accessible via Salesforce CLI
+- Metadata deployment successful
+- Python SDK implementation with realistic APIs
+- RAG integration for knowledge base
+- Salesforce data integration working
+- Agent ready for production deployment
+
+### Phase 3 Complete
+- Comprehensive unit testing suite implemented
+- End-to-end conversation testing scenarios
+- Adversarial security testing framework
+- Performance and reliability testing
+- Test automation and reporting
+- Security vulnerability assessment
+- Production readiness validation
 
 ## Key Files Generated
 - `specs/agentSpec.yaml` - Agent specification
 - `resort_manager_agent.py` - Main agent implementation
 - `demo_resort_agent.py` - Demo scenarios
-- `requirements.txt` - Python dependencies
+- `test_resort_agent.py` - Unit and integration tests
+- `e2e_test_scenarios.py` - End-to-end testing scenarios
+- `adversarial_testing.py` - Security and adversarial testing
+- `test_runner.py` - Comprehensive test orchestration
+- `requirements.txt` - Python dependencies with testing frameworks
 - `force-app/main/default/objects/` - Custom object metadata
 - Custom objects deployed to Salesforce org
 
-**All Phases Complete - Production-Ready Resort Manager Agent!**
-
-## Testing Results
-
-The agent implementation has been successfully tested and is working correctly:
-
-1. **Custom Objects Created**: Reservation__c, Activity__c, Employee__c objects with all required fields
-2. **Agent Functionality**: All 5 agent topics working correctly
-3. **Salesforce Integration**: Real-time data queries and updates working
-4. **RAG Knowledge Base**: Policy lookup and response generation working
-5. **Error Handling**: Graceful handling of empty data scenarios
-
-The agent is ready for production deployment and can handle real resort management scenarios.
+**All 3 Phases Complete - Production-Ready Resort Manager Agent with Comprehensive Testing!**
