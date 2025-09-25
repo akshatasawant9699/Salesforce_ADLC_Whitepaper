@@ -95,14 +95,11 @@ python3 adversarial_testing.py > adversarial_test_report.json
 
 ### Agent Deployment
 ```bash
-# Deploy agent metadata to target org
-sf project deploy start --manifest manifests/Agents.package.xml --target-org resorts-demo
-
-# Deploy agent tests
-sf project deploy start --manifest manifests/AgentTests.package.xml --target-org resorts-demo
-
-# Deploy custom objects
+# Deploy custom objects (working)
 sf project deploy start --source-dir force-app/main/default/objects --target-org resorts-demo
+
+# Create agent using Salesforce CLI (recommended)
+sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name Resort_Manager --target-org resorts-demo --preview
 
 # Open agent in Agentforce Builder UI
 sf org open agent --api-name Resort_Manager --target-org resorts-demo
@@ -122,17 +119,16 @@ python3 phase4_deployment.py
 
 ### Production Deployment Commands
 ```bash
-# Deploy agent metadata
-sf project deploy start --manifest manifests/Agents.package.xml --target-org production
+# Deploy custom objects (working)
+sf project deploy start --source-dir force-app/main/default/objects --target-org resorts-demo
 
-# Deploy custom objects
-sf project deploy start --source-dir force-app/main/default/objects --target-org production
+# Create agent using Salesforce CLI (recommended)
+sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --api-name Resort_Manager --target-org resorts-demo --preview
 
-# Deploy tests
-sf project deploy start --manifest manifests/AgentTests.package.xml --target-org production
-
-# Verify deployment
-sf data query --query "SELECT Id, Name FROM Bot WHERE DeveloperName = 'Resort_Manager'" --target-org production
+# Verify custom objects deployment
+sf data query --query "SELECT Id, Name FROM Reservation__c LIMIT 1" --target-org resorts-demo
+sf data query --query "SELECT Id, Name FROM Activity__c LIMIT 1" --target-org resorts-demo
+sf data query --query "SELECT Id, Name FROM Employee__c LIMIT 1" --target-org resorts-demo
 ```
 
 ## Success Criteria
