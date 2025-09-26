@@ -48,6 +48,14 @@ agent-sdk-implementation/
 - Manage agent metadata and version control
 - Production readiness checklist
 
+### Phase 5: Monitoring & Tuning
+- Monitor agent performance using Data Cloud Python Connector
+- Track key metrics: response time, success rate, user satisfaction, cost
+- Generate performance analytics and visualizations
+- Provide optimization recommendations
+- Export performance data for analysis
+- Configure monitoring dashboards
+
 ## Quick Start
 
 1. **Install Dependencies**
@@ -79,6 +87,7 @@ The notebook provides a complete implementation of the Agent Development Lifecyc
 2. **Phase 2**: Create agent with enhanced capabilities and tools
 3. **Phase 3**: Comprehensive testing and validation
 4. **Phase 4**: Deploy agent to production Salesforce org
+5. **Phase 5**: Monitor agent performance and provide analytics
 
 ### Running All Phases
 
@@ -88,6 +97,7 @@ Execute the notebook cells in sequence to complete the full ADLC:
 2. **Phase 2**: Creates agent with advanced resort management capabilities
 3. **Phase 3**: Runs comprehensive tests (unit, E2E, adversarial, performance)
 4. **Phase 4**: Deploys agent to your Salesforce org using agentforce-sdk
+5. **Phase 5**: Monitors agent performance using Data Cloud analytics
 
 ### Standalone Deployment
 
