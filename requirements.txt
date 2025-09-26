@@ -1,9 +1,0 @@
-agentforce-sdk>=0.1.6
-pyyaml
-requests
-simple-salesforce
-openai
-pydantic
-aiohttp
-pytest
-pytest-asyncio
