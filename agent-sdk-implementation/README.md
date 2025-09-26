@@ -7,9 +7,11 @@ This repository contains the complete Agent Development Lifecycle (ADLC) impleme
 ```
 agent-sdk-implementation/
 ├── notebooks/
-│   ├── ADLC_PythonSDK.ipynb    # Complete notebook with all 3 phases
-│   └── agent_spec.json         # Generated agent specification
+│   ├── ADLC_PythonSDK.ipynb    # Complete notebook with all 4 phases
+│   ├── agent_spec.json         # Generated agent specification
+│   └── deploy_agent.py         # Standalone deployment script
 ├── requirements.txt            # Python dependencies
+├── .gitignore                 # Git ignore rules
 ├── WHITEPAPER.md              # Project documentation
 └── README.md                  # This file
 ```
@@ -74,9 +76,29 @@ agent-sdk-implementation/
 The notebook provides a complete implementation of the Agent Development Lifecycle:
 
 1. **Phase 1**: Collect agent requirements and generate specification
-2. **Phase 2**: Create agent with enhanced capabilities
+2. **Phase 2**: Create agent with enhanced capabilities and tools
 3. **Phase 3**: Comprehensive testing and validation
-4. **Phase 4**: Deploy agent to production using Agentforce DX
+4. **Phase 4**: Deploy agent to production Salesforce org
+
+### Running All Phases
+
+Execute the notebook cells in sequence to complete the full ADLC:
+
+1. **Phase 1**: Generates `agent_spec.json` with agent specification
+2. **Phase 2**: Creates agent with advanced resort management capabilities
+3. **Phase 3**: Runs comprehensive tests (unit, E2E, adversarial, performance)
+4. **Phase 4**: Deploys agent to your Salesforce org using agentforce-sdk
+
+### Standalone Deployment
+
+For quick deployment without running the full notebook:
+
+```bash
+cd notebooks
+python deploy_agent.py
+```
+
+**Note**: Update credentials in the script before running.
 
 ## Advanced Features
 
