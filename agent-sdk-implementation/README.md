@@ -1,6 +1,6 @@
 # ADLC Python SDK Implementation
 
-This repository contains the complete Agent Development Lifecycle (ADLC) implementation using the Salesforce Python SDK for creating, deploying, and testing AI agents.
+This repository contains the complete Agent Development Lifecycle (ADLC) implementation using the Salesforce Python SDK for creating, testing, and deploying AI agents.
 
 ## Project Structure
 
@@ -40,6 +40,12 @@ agent-sdk-implementation/
   - Performance and load testing
 - All tests validated and working
 
+### Phase 4: Deployment & Release
+- Deploy agent to Salesforce using Agentforce DX
+- Open agent in Agentforce Builder UI
+- Manage agent metadata and version control
+- Production readiness checklist
+
 ## Quick Start
 
 1. **Install Dependencies**
@@ -68,8 +74,9 @@ agent-sdk-implementation/
 The notebook provides a complete implementation of the Agent Development Lifecycle:
 
 1. **Phase 1**: Collect agent requirements and generate specification
-2. **Phase 2**: Create and deploy agent with enhanced capabilities
+2. **Phase 2**: Create agent with enhanced capabilities
 3. **Phase 3**: Comprehensive testing and validation
+4. **Phase 4**: Deploy agent to production using Agentforce DX
 
 ## Advanced Features
 
