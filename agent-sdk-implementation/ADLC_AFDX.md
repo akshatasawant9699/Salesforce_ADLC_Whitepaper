@@ -95,6 +95,21 @@ This generates a local JSON file detailing the agent that the LLM will create, i
 
 ## Troubleshooting
 
+### Permission Set Assignment
+
+If you encounter permission set assignment errors, manually assign the required permission sets:
+
+```bash
+# Check available Agentforce permission sets
+sf data query --query "SELECT Id, Name, Label FROM PermissionSet WHERE Name LIKE '%Agent%'"
+
+# Assign required permission sets to the agent user
+sf data create record --sobject PermissionSetAssignment --values "AssigneeId=USER_ID PermissionSetId=0PSHs000006QPkqOAG"
+sf data create record --sobject PermissionSetAssignment --values "AssigneeId=USER_ID PermissionSetId=0PSHs000007RFQROA4"
+```
+
+### Duplicate Username Errors
+
 If you encounter duplicate username errors, use a unique API name:
 
 ```bash
