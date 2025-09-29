@@ -1,29 +1,3 @@
-# Phase 1: Ideation & Design with Agentforce DX
-
-## Generate Agent Specification
-
-```bash
-# Navigate to your DX project directory
-cd agentforcedx
-
-# Generate agent specification interactively
-sf agent generate agent-spec
-```
-
-**Interactive Prompts:**
-```
-Type of agent: Customer
-Company Name: Coral Cloud Resorts
-Company Description: Coral Cloud Resorts provides customers with exceptional destination activities, unforgettable experiences, and reservation services, all backed by a commitment to top-notch customer service.
-Role of the agent: The resort manager fields customer complaints, manages employee schedules, and generally makes sure everything is working smoothly.
-```
-
-## Generated agentSpec.yaml
-
-The command creates an `agentSpec.yaml` file in your DX project's `specs` directory:
-
-```yaml
-# specs/agentSpec.yaml
 name: "Coral Cloud Resorts Resort Manager"
 description: "The resort manager fields customer complaints, manages employee schedules, and generally makes sure everything is working smoothly."
 agentType: "Customer"
@@ -50,25 +24,3 @@ topics:
     description: "Report and coordinate resolution of maintenance problems"
   - name: "Special Events"
     description: "Coordinate special events and celebrations for guests"
-```
-
-## Create Agent from Specification
-
-```bash
-# Create agent from the specification file
-sf agent create --name "Coral Cloud Resorts Resort Manager" --spec specs/agentSpec.yaml
-```
-
-## Preview Agent (Optional)
-
-```bash
-# Preview the agent without saving it in your org
-sf agent create --name "Coral Cloud Resorts Resort Manager" --spec specs/agentSpec.yaml --preview
-```
-
-## Open Agent in Builder UI
-
-```bash
-# Open the agent in Agentforce Builder UI
-sf org open agent --api-name Coral_Cloud_Resorts_Resort_Manager
-```
