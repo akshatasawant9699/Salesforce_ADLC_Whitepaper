@@ -114,8 +114,28 @@ If you encounter duplicate username errors, use a unique API name:
 
 ```bash
 # Create agent with unique API name
-sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" --api-name Coral_Cloud_Resort_Manager_$(date +%Y%m%d_%H%M%S)
+sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" --api-name Coral_Cloud_Resort_Manager_$(date +%Y%m%d_%H%M%S)_$(uuidgen | cut -c1-8)
 ```
+
+### Deleting Previously Created Agents
+
+To clean up existing agents before creating new ones:
+
+```bash
+# Check existing agents
+sf data query --query "SELECT Id, DeveloperName, MasterLabel FROM BotDefinition WHERE MasterLabel LIKE '%Coral%' OR MasterLabel LIKE '%Resort%'"
+
+# Delete agent (requires admin permissions)
+sf data delete record --sobject BotDefinition --record-id AGENT_ID
+
+# Check and delete agent users
+sf data query --query "SELECT Id, Username, Name FROM User WHERE Username LIKE '%Coral%' OR Username LIKE '%Resort%'"
+sf data delete record --sobject User --record-id USER_ID
+```
+
+**Note**: Agent deletion requires admin permissions. If you don't have admin access, use unique names for new agents instead.
+
+
 
 ## Open Agent in Builder UI
 
