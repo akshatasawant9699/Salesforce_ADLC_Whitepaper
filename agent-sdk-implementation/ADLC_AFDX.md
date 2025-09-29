@@ -1,11 +1,30 @@
 # Phase 1: Ideation & Design with Agentforce DX
 
+## Prerequisites
+
+### Create DX Project
+
+```bash
+# Create a new Salesforce DX project
+sf project generate --name agentforcedx
+
+# Navigate to the project directory
+cd agentforcedx
+```
+
+### Authorize Salesforce Org
+
+```bash
+# Authorize your Salesforce org
+sf org login web --alias agentforce
+
+# Set as default org
+sf config set target-org agentforce
+```
+
 ## Generate Agent Specification
 
 ```bash
-# Navigate to your DX project directory
-cd agentforcedx
-
 # Generate agent specification interactively
 sf agent generate agent-spec
 ```
@@ -52,23 +71,3 @@ topics:
     description: "Coordinate special events and celebrations for guests"
 ```
 
-## Create Agent from Specification
-
-```bash
-# Create agent from the specification file
-sf agent create --name "Coral Cloud Resorts Resort Manager" --spec specs/agentSpec.yaml
-```
-
-## Preview Agent (Optional)
-
-```bash
-# Preview the agent without saving it in your org
-sf agent create --name "Coral Cloud Resorts Resort Manager" --spec specs/agentSpec.yaml --preview
-```
-
-## Open Agent in Builder UI
-
-```bash
-# Open the agent in Agentforce Builder UI
-sf org open agent --api-name Coral_Cloud_Resorts_Resort_Manager
-```
