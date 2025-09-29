@@ -137,6 +137,3 @@ Monitor performance and optimize based on real-world usage data.
 - All sensitive data is excluded via .gitignore
 - Follow Salesforce security best practices
 
-## License
-
-This project is for demonstration purposes of the Salesforce Agent Development Lifecycle.
