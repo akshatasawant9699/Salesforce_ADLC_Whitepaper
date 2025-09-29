@@ -45,3 +45,4 @@ credentials.json
 create_objects_cli.py
 create_objects_metadata.py
 insert_sample_data.py
+agent-sdk-implementation/notebooks/agent-sdk/
