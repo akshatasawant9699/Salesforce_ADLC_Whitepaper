@@ -1,15 +1,21 @@
-# ADLC Python SDK Implementation
+# ADLC Implementation - Python SDK & Agentforce DX
 
-This repository contains the complete Agent Development Lifecycle (ADLC) implementation using the Salesforce Python SDK for creating, testing, and deploying AI agents.
+This repository contains the complete Agent Development Lifecycle (ADLC) implementation using both the Salesforce Python SDK and Agentforce DX for creating, testing, and deploying AI agents.
 
 ## Project Structure
 
 ```
 agent-sdk-implementation/
 ├── notebooks/
-│   ├── ADLC_PythonSDK.ipynb    # Complete notebook with all 4 phases
+│   ├── ADLC_PythonSDK.ipynb    # Complete notebook with all 5 phases
 │   ├── agent_spec.json         # Generated agent specification
 │   └── deploy_agent.py         # Standalone deployment script
+├── docs/
+│   ├── ADLC_AFDX.md            # Complete AFDX implementation guide
+│   ├── phase1_ideation_design.md # Phase 1 AFDX implementation
+│   ├── specs/
+│   │   └── agentSpec.yaml      # Sample agent specification
+│   └── README_AFDX.md          # AFDX documentation
 ├── requirements.txt            # Python dependencies
 ├── .gitignore                 # Git ignore rules
 ├── WHITEPAPER.md              # Project documentation
@@ -18,10 +24,24 @@ agent-sdk-implementation/
 
 ## Features
 
+### Implementation Approaches
+
+#### Python SDK Implementation
+- **Jupyter Notebook**: Complete interactive implementation
+- **Python SDK**: Uses `agentforce-sdk` for agent creation
+- **Data Cloud Integration**: Performance monitoring and analytics
+
+#### Agentforce DX Implementation
+- **Pro-Code Development**: CLI-based agent development
+- **Version Control**: Git integration for agent metadata
+- **CI/CD Integration**: Automated deployment pipelines
+- **Modern DevOps**: Industry-standard development practices
+
 ### Phase 1: Ideation & Design
 - Interactive agent specification generation
 - Company and role-based topic generation
 - JSON specification creation compatible with agentforce-sdk
+- YAML specification for Agentforce DX
 
 ### Phase 2: Development
 - Agent creation using Salesforce Python SDK
@@ -58,6 +78,8 @@ agent-sdk-implementation/
 
 ## Quick Start
 
+### Python SDK Implementation
+
 1. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
@@ -72,14 +94,52 @@ agent-sdk-implementation/
    - Replace placeholder credentials in the notebook with your Salesforce credentials
    - Ensure you have agentforce-sdk access
 
+### Agentforce DX Implementation
+
+1. **Install Salesforce CLI**
+   ```bash
+   npm install -g @salesforce/cli
+   sf update
+   ```
+
+2. **Create DX Project**
+   ```bash
+   sf project generate --name agentforcedx
+   cd agentforcedx
+   ```
+
+3. **Authorize Org**
+   ```bash
+   sf org login web --alias agentforce
+   ```
+
+4. **Generate Agent Specification**
+   ```bash
+   sf agent generate agent-spec
+   ```
+
+5. **Create Agent**
+   ```bash
+   sf agent create --spec-file specs/agentSpec.yaml
+   ```
+
 ## Requirements
 
+### Python SDK Implementation
 - Python 3.9+
 - Jupyter Notebook
 - Salesforce org with Agentforce enabled
 - agentforce-sdk package
 
+### Agentforce DX Implementation
+- Salesforce CLI (latest version)
+- Visual Studio Code with Salesforce Extensions
+- Salesforce Developer Edition org with Agentforce enabled
+- Git for version control
+
 ## Usage
+
+### Python SDK Implementation
 
 The notebook provides a complete implementation of the Agent Development Lifecycle:
 
@@ -89,7 +149,7 @@ The notebook provides a complete implementation of the Agent Development Lifecyc
 4. **Phase 4**: Deploy agent to production Salesforce org
 5. **Phase 5**: Monitor agent performance and provide analytics
 
-### Running All Phases
+#### Running All Phases
 
 Execute the notebook cells in sequence to complete the full ADLC:
 
@@ -99,7 +159,7 @@ Execute the notebook cells in sequence to complete the full ADLC:
 4. **Phase 4**: Deploys agent to your Salesforce org using agentforce-sdk
 5. **Phase 5**: Monitors agent performance using Data Cloud analytics
 
-### Standalone Deployment
+#### Standalone Deployment
 
 For quick deployment without running the full notebook:
 
@@ -109,6 +169,35 @@ python deploy_agent.py
 ```
 
 **Note**: Update credentials in the script before running.
+
+### Agentforce DX Implementation
+
+Follow the comprehensive guide in `docs/ADLC_AFDX.md` for the complete Agentforce DX implementation:
+
+1. **Phase 1**: Generate agent specification using `sf agent generate agent-spec`
+2. **Phase 2**: Create agent from specification using `sf agent create`
+3. **Phase 3**: Test agent functionality using `sf agent test`
+4. **Phase 4**: Deploy agent using `sf project deploy start`
+5. **Phase 5**: Monitor agent using `sf agent monitor` commands
+
+#### Key Commands
+
+```bash
+# Generate agent specification
+sf agent generate agent-spec
+
+# Create agent from specification
+sf agent create --spec-file specs/agentSpec.yaml
+
+# Test agent
+sf agent test --agent-name "Agent Name"
+
+# Deploy agent
+sf project deploy start --target-org org-alias
+
+# Monitor agent
+sf agent monitor enable --agent-name "Agent Name"
+```
 
 ## Advanced Features
 
@@ -126,7 +215,10 @@ python deploy_agent.py
 
 ## Documentation
 
-See `WHITEPAPER.md` for detailed implementation documentation.
+- **WHITEPAPER.md**: Detailed implementation documentation
+- **docs/ADLC_AFDX.md**: Complete Agentforce DX implementation guide
+- **docs/phase1_ideation_design.md**: Phase 1 AFDX implementation details
+- **docs/README_AFDX.md**: Agentforce DX quick start guide
 
 ## License
 
