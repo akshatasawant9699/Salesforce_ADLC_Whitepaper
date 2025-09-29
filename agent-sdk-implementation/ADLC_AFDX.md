@@ -75,23 +75,32 @@ topics:
 
 # Phase 2: Development
 
+## Preview Agent Creation
+
+Before creating the agent, preview what it will look like in your org:
+
+```bash
+# Preview the agent creation (generates JSON file with agent details)
+sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --preview
+```
+
+This command generates a JSON file named `Resort_Manager_Preview_<timestamp>.json` that describes the agent the LLM will create, including suggested actions for each topic, instructions, and sample utterances.
+
 ## Create Agent from Specification
+
+Once you're satisfied with the preview, create the agent in your org:
 
 ```bash
 # Create the agent using the spec file
-sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager"
+sf agent create --spec specs/agentSpec.yaml --name "Resort Manager"
 ```
 
-When prompted, you can accept the default API name, Coral_Cloud_Resort_Manager. The command parses the spec, creates the agent, and retrieves the metadata. This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which is the "glue" that adds AI intelligence and references the agent's topics and actions.
+The command prompts you for the API name of the agent (we recommend accepting the default `Resort_Manager`). The command then:
+- Parses the agent spec file
+- Creates the agent in your development org
+- Retrieves the metadata back to your local DX project
 
-## Preview Agent Creation
-
-```bash
-# Preview the agent creation
-sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" --preview
-```
-
-This generates a local JSON file detailing the agent that the LLM will create, including suggested actions.
+This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which adds AI intelligence and references the agent's topics and actions.
 
 ## Troubleshooting
 
@@ -150,8 +159,14 @@ sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" 
 
 ## Open Agent in Builder UI
 
+After creating the agent, open it in the Agentforce Builder UI:
+
 ```bash
 # Open the agent in Agentforce Builder UI
-sf org open agent --api-name Coral_Cloud_Resort_Manager
+sf org open agent --api-name Resort_Manager
 ```
+
+**Note**: The `--api-name` flag uses the API name of the agent. To find an agent's API name, go to Setup in your org and navigate to the agent's details page.
+
+Now that you've created a basic agent, it's time to customize it and implement the details of what it can do.
 
