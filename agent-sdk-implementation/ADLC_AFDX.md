@@ -79,24 +79,33 @@ topics:
 
 ```bash
 # Create the agent using the spec file
-sf agent create --spec specs/agentSpec.yaml --name "Resort Manager"
+sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager"
 ```
 
-When prompted, you can accept the default API name, Resort_Manager. The command parses the spec, creates the agent, and retrieves the metadata. This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which is the "glue" that adds AI intelligence and references the agent's topics and actions.
+When prompted, you can accept the default API name, Coral_Cloud_Resort_Manager. The command parses the spec, creates the agent, and retrieves the metadata. This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which is the "glue" that adds AI intelligence and references the agent's topics and actions.
 
 ## Preview Agent Creation
 
 ```bash
 # Preview the agent creation
-sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --preview
+sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" --preview
 ```
 
 This generates a local JSON file detailing the agent that the LLM will create, including suggested actions.
+
+## Troubleshooting
+
+If you encounter duplicate username errors, use a unique API name:
+
+```bash
+# Create agent with unique API name
+sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" --api-name Coral_Cloud_Resort_Manager_$(date +%Y%m%d_%H%M%S)
+```
 
 ## Open Agent in Builder UI
 
 ```bash
 # Open the agent in Agentforce Builder UI
-sf org open agent --api-name Resort_Manager
+sf org open agent --api-name Coral_Cloud_Resort_Manager
 ```
 
