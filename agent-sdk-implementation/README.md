@@ -126,8 +126,8 @@ Monitor performance and optimize based on real-world usage data.
 
 ## Documentation
 
-- **ADLC_AFDX.md**: Complete Agentforce DX implementation guide with all 5 phases
-- **notebooks/ADLC_PythonSDK.ipynb**: Interactive Python SDK implementation
+- **ADLC_AFDX.md**: Agentforce DX implementation guide with Phase 1 & 2
+- **notebooks/ADLC_PythonSDK.ipynb**: Interactive Python SDK implementation with all 5 phases
 - **notebooks/deploy_agent.py**: Standalone deployment script
 
 ## Security
