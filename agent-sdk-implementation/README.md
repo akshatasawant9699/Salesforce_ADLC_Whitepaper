@@ -12,7 +12,6 @@ agent-sdk-implementation/
 │   └── deploy_agent.py         # Standalone deployment script
 ├── docs/
 │   ├── ADLC_AFDX.md            # Complete AFDX implementation guide
-│   ├── phase1_ideation_design.md # Phase 1 AFDX implementation
 │   ├── specs/
 │   │   └── agentSpec.yaml      # Sample agent specification
 │   └── README_AFDX.md          # AFDX documentation
@@ -216,8 +215,7 @@ sf agent monitor enable --agent-name "Agent Name"
 ## Documentation
 
 - **WHITEPAPER.md**: Detailed implementation documentation
-- **docs/ADLC_AFDX.md**: Complete Agentforce DX implementation guide
-- **docs/phase1_ideation_design.md**: Phase 1 AFDX implementation details
+- **docs/ADLC_AFDX.md**: Complete Agentforce DX implementation guide with all 5 phases
 - **docs/README_AFDX.md**: Agentforce DX quick start guide
 
 ## License
