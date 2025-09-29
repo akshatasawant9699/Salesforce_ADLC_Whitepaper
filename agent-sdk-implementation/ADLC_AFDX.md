@@ -119,8 +119,13 @@ sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" 
 
 ### Deleting Previously Created Agents
 
-To clean up existing agents before creating new ones:
+**Option 1: Use Salesforce Setup UI (Recommended)**
+1. Go to **Setup** → **Object Manager** → **Bot Definition**
+2. Find your agent (Coral Cloud Resorts Resort Manager)
+3. Click on the agent name to open it
+4. Click **"Delete"** button and confirm
 
+**Option 2: Use CLI with Admin Permissions**
 ```bash
 # Check existing agents
 sf data query --query "SELECT Id, DeveloperName, MasterLabel FROM BotDefinition WHERE MasterLabel LIKE '%Coral%' OR MasterLabel LIKE '%Resort%'"
@@ -133,7 +138,13 @@ sf data query --query "SELECT Id, Username, Name FROM User WHERE Username LIKE '
 sf data delete record --sobject User --record-id USER_ID
 ```
 
-**Note**: Agent deletion requires admin permissions. If you don't have admin access, use unique names for new agents instead.
+**Option 3: Use Unique Names (No Deletion Required)**
+```bash
+# Create agent with unique API name to avoid conflicts
+sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" --api-name Coral_Cloud_Resort_Manager_$(date +%Y%m%d_%H%M%S)_$(uuidgen | cut -c1-8)
+```
+
+**Note**: If you encounter "insufficient access rights" errors, use the Setup UI or create agents with unique names instead of deleting existing ones.
 
 
 
