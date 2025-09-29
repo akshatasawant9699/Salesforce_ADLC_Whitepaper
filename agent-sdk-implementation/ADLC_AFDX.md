@@ -71,3 +71,32 @@ topics:
     description: "Coordinate special events and celebrations for guests"
 ```
 
+---
+
+# Phase 2: Development
+
+## Create Agent from Specification
+
+```bash
+# Create the agent using the spec file
+sf agent create --spec specs/agentSpec.yaml --name "Resort Manager"
+```
+
+When prompted, you can accept the default API name, Resort_Manager. The command parses the spec, creates the agent, and retrieves the metadata. This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which is the "glue" that adds AI intelligence and references the agent's topics and actions.
+
+## Preview Agent Creation
+
+```bash
+# Preview the agent creation
+sf agent create --spec specs/agentSpec.yaml --name "Resort Manager" --preview
+```
+
+This generates a local JSON file detailing the agent that the LLM will create, including suggested actions.
+
+## Open Agent in Builder UI
+
+```bash
+# Open the agent in Agentforce Builder UI
+sf org open agent --api-name Resort_Manager
+```
+
