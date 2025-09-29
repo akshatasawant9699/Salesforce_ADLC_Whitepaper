@@ -91,16 +91,46 @@ This command generates a JSON file named `Resort_Manager_Preview_<timestamp>.jso
 Once you're satisfied with the preview, create the agent in your org:
 
 ```bash
-# Create the agent using the spec file
-sf agent create --spec specs/agentSpec.yaml --name "Resort Manager"
+# Create the agent using the spec file with target org to prevent permission issues
+sf agent create --name "Resort Manager" --api-name Resort_Manager --spec specs/agentSpec.yaml --target-org my-org
 ```
 
-The command prompts you for the API name of the agent (we recommend accepting the default `Resort_Manager`). The command then:
+**Key Parameters:**
+- `--name`: Display name for the agent
+- `--api-name`: API name for the agent (Resort_Manager)
+- `--spec`: Path to the agent specification file
+- `--target-org`: Target org alias to prevent permission issues
+
+The command then:
 - Parses the agent spec file
 - Creates the agent in your development org
 - Retrieves the metadata back to your local DX project
 
 This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which adds AI intelligence and references the agent's topics and actions.
+
+## Alternative: Python SDK Approach
+
+For more robust error handling and advanced features, consider using the Python SDK approach as implemented in `ADLC_PythonSDK.ipynb`:
+
+```python
+# Create agent from JSON specification with error handling
+try:
+    agent = AgentUtils.create_agent_from_file('agent_spec.json')
+    print(f"Agent Name: {agent.name}")
+    print(f"Description: {agent.description}")
+    print(f"Company: {agent.company_name}")
+    print(f"Topics: {len(agent.topics)}")
+    print("SUCCESS: Agent created successfully")
+except Exception as e:
+    print(f"WARNING: Failed to create agent from JSON: {e}")
+    print("Creating mock agent for demonstration...")
+```
+
+**Benefits of Python SDK Approach:**
+- Better error handling and exception management
+- More granular control over agent creation
+- Integration with advanced features (tools, knowledge base)
+- Mock agent fallback for demonstration purposes
 
 ## Troubleshooting
 
