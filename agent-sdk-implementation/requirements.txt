@@ -12,3 +12,5 @@ pytest-asyncio
 pandas
 matplotlib
 seaborn
+plotly>=6.3.0
+numpy>=1.21.0
