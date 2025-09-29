@@ -108,39 +108,54 @@ The command then:
 
 This metadata includes a Bot, BotVersion, and a GenAiPlannerBundle, which adds AI intelligence and references the agent's topics and actions.
 
-## Alternative: Python SDK Approach
-
-For more robust error handling and advanced features, consider using the Python SDK approach as implemented in `ADLC_PythonSDK.ipynb`:
-
-```python
-# Create agent from JSON specification with error handling
-try:
-    agent = AgentUtils.create_agent_from_file('agent_spec.json')
-    print(f"Agent Name: {agent.name}")
-    print(f"Description: {agent.description}")
-    print(f"Company: {agent.company_name}")
-    print(f"Topics: {len(agent.topics)}")
-    print("SUCCESS: Agent created successfully")
-except Exception as e:
-    print(f"WARNING: Failed to create agent from JSON: {e}")
-    print("Creating mock agent for demonstration...")
-```
-
-**Benefits of Python SDK Approach:**
-- Better error handling and exception management
-- More granular control over agent creation
-- Integration with advanced features (tools, knowledge base)
-- Mock agent fallback for demonstration purposes
-
 ## Troubleshooting
 
-### Permission Set Assignment
+### Permission Set Assignment Error
+
+If you encounter the error: `Error creating default user for EinsteinServiceAgent. Error while assigning Permission Sets of EinsteinServiceAgent`, follow these steps:
+
+#### Step 1: Use Salesforce Setup UI (Recommended)
+
+1. **Go to Setup** → **Permission Sets**
+2. **Find these Agentforce permission sets**:
+   - `AgentforceServiceAgentUserPsg`
+   - `AgentforceServiceAgentSecureBase`
+   - `Agentforce_Service_Agent_Permissions`
+3. **For each permission set**:
+   - Click **Manage Assignments**
+   - Click **Add Assignments**
+   - Select the **EinsteinServiceAgent User**
+   - Click **Assign**
+
+#### Step 2: Fix Agent Specification
+Ensure your `agentSpec.yaml` has the correct format:
+
+```yaml
+name: "Coral Cloud Resorts Resort Manager"
+description: "The resort manager fields customer complaints, manages employee schedules, and generally makes sure everything is working smoothly."
+agentType: "customer"  # Must be lowercase
+companyName: "Coral Cloud Resorts"
+companyDescription: "Coral Cloud Resorts provides customers with exceptional destination activities, unforgettable experiences, and reservation services, all backed by a commitment to top-notch customer service."
+role: "The resort manager fields customer complaints, manages employee schedules, and generally makes sure everything is working smoothly."  # Required field
+topics:
+  - name: "Customer Complaints"
+    description: "Handle and resolve customer complaints about services, accommodations, or experiences"
+  # ... more topics
+```
+
+#### Step 2: Manual Permission Set Assignment
 
 If you encounter permission set assignment errors, manually assign the required permission sets:
 
 ```bash
 # Check available Agentforce permission sets
-sf data query --query "SELECT Id, Name, Label FROM PermissionSet WHERE Name LIKE '%Agent%'"
+sf data query --query "SELECT Id, Name, Label FROM PermissionSet WHERE Name LIKE '%Agent%'" --target-org agentforce
+
+# Find the EinsteinServiceAgent user
+sf data query --query "SELECT Id, Username, Name FROM User WHERE Username LIKE '%EinsteinServiceAgent%'" --target-org agentforce
+
+# Assign the required permission sets manually
+sf data create record --sobject PermissionSetAssignment --values "PermissionSetId=0PS000000000000,AssigneeId=005000000000000" --target-org agentforce
 
 # Assign required permission sets to the agent user
 sf data create record --sobject PermissionSetAssignment --values "AssigneeId=USER_ID PermissionSetId=0PSHs000006QPkqOAG"
@@ -184,6 +199,43 @@ sf agent create --spec specs/agentSpec.yaml --name "Coral Cloud Resort Manager" 
 ```
 
 **Note**: If you encounter "insufficient access rights" errors, use the Setup UI or create agents with unique names instead of deleting existing ones.
+
+### Permission Set Assignment Error
+
+If you encounter the error: `Error creating default user for EinsteinServiceAgent. Error while assigning Permission Sets of EinsteinServiceAgent`, follow these steps:
+
+#### Step 1: Use Salesforce Setup UI (Recommended Solution)
+
+1. **Go to Setup** → **Permission Sets**
+2. **Find these Agentforce permission sets**:
+   - `AgentforceServiceAgentUserPsg`
+   - `AgentforceServiceAgentSecureBase` 
+   - `Agentforce_Service_Agent_Permissions`
+3. **For each permission set**:
+   - Click **Manage Assignments**
+   - Click **Add Assignments**
+   - Select the **EinsteinServiceAgent User**
+   - Click **Assign**
+
+#### Step 2: Alternative - Use Unique API Names
+If the above doesn't work, try creating the agent with a completely unique API name:
+
+```bash
+# Use timestamp and UUID for unique naming
+sf agent create --name "Resort Manager" --api-name Resort_Manager_$(date +%s)_$(uuidgen | cut -c1-8) --spec specs/agentSpec.yaml --target-org agentforce
+```
+
+#### Step 3: Check Existing Users and Permission Sets
+```bash
+# Check available Agentforce permission sets
+sf data query --query "SELECT Id, Name, Label FROM PermissionSet WHERE Name LIKE '%Agent%' OR Name LIKE '%Einstein%'" --target-org agentforce
+
+# Find existing EinsteinServiceAgent users
+sf data query --query "SELECT Id, Username, Name FROM User WHERE Name LIKE '%EinsteinServiceAgent%'" --target-org agentforce
+
+# Check current permission set assignments
+sf data query --query "SELECT Id, AssigneeId, PermissionSetId, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = 'USER_ID_HERE'" --target-org agentforce
+```
 
 
 
