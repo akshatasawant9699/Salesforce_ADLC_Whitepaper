@@ -1,0 +1,10 @@
+{
+  "agent_id": "agent_20251006_171435",
+  "name": "Resort Manager Agent",
+  "version": "1.0.0",
+  "description": "AI-powered assistant for comprehensive resort management including guest services, employee scheduling, and operational optimization",
+  "topics": 3,
+  "status": "active",
+  "deployment_org": "your_username@example.com",
+  "created_date": "2025-10-06T17:14:35.277106"
+}

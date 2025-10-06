@@ -1,0 +1,570 @@
+[
+  {
+    "timestamp": "2025-10-06T17:46:14.067387",
+    "metric_name": "performance_score",
+    "value": 0.7344137299887625,
+    "unit": "score",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067395",
+    "metric_name": "performance_response_time",
+    "value": 1.3000984137559801,
+    "unit": "seconds",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067398",
+    "metric_name": "performance_score",
+    "value": 0.6919892253144679,
+    "unit": "score",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067401",
+    "metric_name": "performance_response_time",
+    "value": 1.7743510994525664,
+    "unit": "seconds",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067403",
+    "metric_name": "performance_score",
+    "value": 0.5803972863285063,
+    "unit": "score",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067406",
+    "metric_name": "performance_response_time",
+    "value": 0.16655112055509147,
+    "unit": "seconds",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067408",
+    "metric_name": "performance_score",
+    "value": 0.5691106568514173,
+    "unit": "score",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067411",
+    "metric_name": "performance_response_time",
+    "value": 0.34085585755786896,
+    "unit": "seconds",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067413",
+    "metric_name": "performance_score",
+    "value": 0.6731851188267646,
+    "unit": "score",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067416",
+    "metric_name": "performance_response_time",
+    "value": 0.2944553119259964,
+    "unit": "seconds",
+    "category": "performance",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067418",
+    "metric_name": "security_score",
+    "value": 0.6465060337906766,
+    "unit": "score",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067421",
+    "metric_name": "security_response_time",
+    "value": 1.1584055453313227,
+    "unit": "seconds",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067423",
+    "metric_name": "security_score",
+    "value": 0.8432719327904443,
+    "unit": "score",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067425",
+    "metric_name": "security_response_time",
+    "value": 0.22030942053387792,
+    "unit": "seconds",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067428",
+    "metric_name": "security_score",
+    "value": 0.9311284607788688,
+    "unit": "score",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067430",
+    "metric_name": "security_response_time",
+    "value": 1.2700401247460602,
+    "unit": "seconds",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067433",
+    "metric_name": "security_score",
+    "value": 0.7299670095084824,
+    "unit": "score",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067435",
+    "metric_name": "security_response_time",
+    "value": 0.6397937382136999,
+    "unit": "seconds",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067437",
+    "metric_name": "security_score",
+    "value": 0.5011253126575338,
+    "unit": "score",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067439",
+    "metric_name": "security_response_time",
+    "value": 1.7244086320675054,
+    "unit": "seconds",
+    "category": "security",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067442",
+    "metric_name": "reliability_score",
+    "value": 0.7858608907740756,
+    "unit": "score",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067444",
+    "metric_name": "reliability_response_time",
+    "value": 0.7634852670505122,
+    "unit": "seconds",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067446",
+    "metric_name": "reliability_score",
+    "value": 0.600904784099355,
+    "unit": "score",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067449",
+    "metric_name": "reliability_response_time",
+    "value": 0.20047276086591242,
+    "unit": "seconds",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067451",
+    "metric_name": "reliability_score",
+    "value": 0.6039898486235942,
+    "unit": "score",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067453",
+    "metric_name": "reliability_response_time",
+    "value": 1.3204417920260179,
+    "unit": "seconds",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067455",
+    "metric_name": "reliability_score",
+    "value": 0.8258668195040806,
+    "unit": "score",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067457",
+    "metric_name": "reliability_response_time",
+    "value": 0.9933419295964014,
+    "unit": "seconds",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067460",
+    "metric_name": "reliability_score",
+    "value": 0.8510337700564208,
+    "unit": "score",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067462",
+    "metric_name": "reliability_response_time",
+    "value": 1.5440803079400305,
+    "unit": "seconds",
+    "category": "reliability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067464",
+    "metric_name": "usability_score",
+    "value": 0.960684393522063,
+    "unit": "score",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067466",
+    "metric_name": "usability_response_time",
+    "value": 0.8017966090749006,
+    "unit": "seconds",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067468",
+    "metric_name": "usability_score",
+    "value": 0.8901835318386484,
+    "unit": "score",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067471",
+    "metric_name": "usability_response_time",
+    "value": 0.7487082542107822,
+    "unit": "seconds",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067473",
+    "metric_name": "usability_score",
+    "value": 0.8582363972611502,
+    "unit": "score",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067475",
+    "metric_name": "usability_response_time",
+    "value": 1.743591767055116,
+    "unit": "seconds",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067477",
+    "metric_name": "usability_score",
+    "value": 0.8159960770780293,
+    "unit": "score",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067479",
+    "metric_name": "usability_response_time",
+    "value": 1.1879177063688895,
+    "unit": "seconds",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067482",
+    "metric_name": "usability_score",
+    "value": 0.5413405739502324,
+    "unit": "score",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:14.067484",
+    "metric_name": "usability_response_time",
+    "value": 1.8152225299300901,
+    "unit": "seconds",
+    "category": "usability",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:15.046748",
+    "metric_name": "topics_generated",
+    "value": 5,
+    "unit": "count",
+    "category": "general",
+    "phase": "Phase 1: Ideation & Design"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:15.046759",
+    "metric_name": "spec_complexity",
+    "value": 0.8,
+    "unit": "score",
+    "category": "general",
+    "phase": "Phase 1: Ideation & Design"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:15.548207",
+    "metric_name": "development_time",
+    "value": 2.3,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Phase 2: Development"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:15.548225",
+    "metric_name": "tools_created",
+    "value": 8,
+    "unit": "count",
+    "category": "general",
+    "phase": "Phase 2: Development"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:15.548244",
+    "metric_name": "knowledge_base_size",
+    "value": 15,
+    "unit": "items",
+    "category": "general",
+    "phase": "Phase 2: Development"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:16.753669",
+    "metric_name": "unit_tests_passed",
+    "value": 8,
+    "unit": "count",
+    "category": "general",
+    "phase": "Phase 3: Testing & Validation"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:16.753680",
+    "metric_name": "e2e_tests_passed",
+    "value": 4,
+    "unit": "count",
+    "category": "general",
+    "phase": "Phase 3: Testing & Validation"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:16.753690",
+    "metric_name": "security_tests_passed",
+    "value": 5,
+    "unit": "count",
+    "category": "general",
+    "phase": "Phase 3: Testing & Validation"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:16.753704",
+    "metric_name": "performance_score",
+    "value": 95.2,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Phase 3: Testing & Validation"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:17.556311",
+    "metric_name": "deployment_time",
+    "value": 1.8,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Phase 4: Deployment & Release"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:17.556331",
+    "metric_name": "deployment_success",
+    "value": 1.0,
+    "unit": "boolean",
+    "category": "general",
+    "phase": "Phase 4: Deployment & Release"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:17.556349",
+    "metric_name": "metadata_size",
+    "value": 2.5,
+    "unit": "MB",
+    "category": "general",
+    "phase": "Phase 4: Deployment & Release"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:18.162033",
+    "metric_name": "response_time",
+    "value": 2.1,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:18.162061",
+    "metric_name": "success_rate",
+    "value": 0.96,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:18.162086",
+    "metric_name": "user_satisfaction",
+    "value": 4.3,
+    "unit": "rating",
+    "category": "general",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:18.162113",
+    "metric_name": "error_rate",
+    "value": 0.04,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Phase 5: Monitoring & Tuning"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.245824",
+    "metric_name": "realtime_response_time",
+    "value": 2.366618057884162,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.245830",
+    "metric_name": "realtime_success_rate",
+    "value": 0.941002605992433,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.245831",
+    "metric_name": "realtime_satisfaction",
+    "value": 4.376589935007556,
+    "unit": "rating",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.347563",
+    "metric_name": "realtime_response_time",
+    "value": 3.1768175924103597,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.347578",
+    "metric_name": "realtime_success_rate",
+    "value": 0.9776471822134466,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.347581",
+    "metric_name": "realtime_satisfaction",
+    "value": 4.2129438900881935,
+    "unit": "rating",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.452695",
+    "metric_name": "realtime_response_time",
+    "value": 3.2037458667129908,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.452717",
+    "metric_name": "realtime_success_rate",
+    "value": 0.9203577105632544,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.452720",
+    "metric_name": "realtime_satisfaction",
+    "value": 4.850725698867667,
+    "unit": "rating",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.554528",
+    "metric_name": "realtime_response_time",
+    "value": 1.9960062486998706,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.554560",
+    "metric_name": "realtime_success_rate",
+    "value": 0.963310254766422,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.554564",
+    "metric_name": "realtime_satisfaction",
+    "value": 4.373506022497659,
+    "unit": "rating",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.659693",
+    "metric_name": "realtime_response_time",
+    "value": 3.239976617200938,
+    "unit": "seconds",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.659719",
+    "metric_name": "realtime_success_rate",
+    "value": 0.9214313138549635,
+    "unit": "percentage",
+    "category": "general",
+    "phase": "Unknown"
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.659723",
+    "metric_name": "realtime_satisfaction",
+    "value": 4.0426406851097445,
+    "unit": "rating",
+    "category": "general",
+    "phase": "Unknown"
+  }
+]

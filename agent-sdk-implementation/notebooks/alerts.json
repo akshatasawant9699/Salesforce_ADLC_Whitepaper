@@ -1,0 +1,34 @@
+[
+  {
+    "timestamp": "2025-10-06T17:46:19.765268",
+    "type": "WARNING",
+    "message": "Response time exceeded threshold: 3.2s",
+    "metadata": {
+      "threshold": 3.0
+    }
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.765290",
+    "type": "INFO",
+    "message": "High user satisfaction detected: 4.8/5.0",
+    "metadata": {
+      "satisfaction": 4.8
+    }
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.765298",
+    "type": "SUCCESS",
+    "message": "Performance optimization applied successfully",
+    "metadata": {
+      "improvement": "15%"
+    }
+  },
+  {
+    "timestamp": "2025-10-06T17:46:19.765305",
+    "type": "INFO",
+    "message": "New conversation pattern detected",
+    "metadata": {
+      "pattern_type": "complaint_resolution"
+    }
+  }
+]
