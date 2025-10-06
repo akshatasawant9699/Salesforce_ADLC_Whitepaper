@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fullName>RevenueOptimization_Tests</fullName>
+  <label>Revenueoptimization Tests</label>
+  <agentVersion>Resort Manager Agent</agentVersion>
+  <testCases>
+    <name>TestCase_1_DynamicPricing</name>
+    <inputs>
+      <utterance>What should we price the deluxe rooms for this weekend?</utterance>
+      <contextVariables>
+        <name>UserRole</name>
+        <value>RevenueManager</value>
+      </contextVariables>
+      <contextVariables>
+        <name>Season</name>
+        <value>Peak</value>
+      </contextVariables>
+    </inputs>
+    <expectations>
+      <type>topicSequence</type>
+      <expectedTopic>RevenueOptimization</expectedTopic>
+    </expectations>
+    <expectations>
+      <type>actionSequence</type>
+      <expectedAction>dynamic_pricing</expectedAction>
+    </expectations>
+    <expectations>
+      <type>stringMatch</type>
+      <expectedString>pricing</expectedString>
+    </expectations>
+  </testCases>
+</AiEvaluationDefinition>
