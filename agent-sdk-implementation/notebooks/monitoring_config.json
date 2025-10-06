@@ -1,5 +1,5 @@
 {
-  "agent_name": "Coral Cloud Resorts Resort Manager",
+  "agent_name": "Coral Cloud AK Resort Manager",
   "monitoring_metrics": [
     "response_time_ms",
     "success_rate",
