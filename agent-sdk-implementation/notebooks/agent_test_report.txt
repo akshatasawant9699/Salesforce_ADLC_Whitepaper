@@ -1,9 +1,9 @@
 ================================================================================
 SALESFORCE AGENT TESTING API - EVALUATION REPORT
 ================================================================================
-Evaluation ID: eval_ReservationManagement_Tests_20251006_200018
+Evaluation ID: eval_ReservationManagement_Tests_20251006_231855
 Status: COMPLETED
-Timestamp: 2025-10-06 20:00:18
+Timestamp: 2025-10-06 23:18:55
 
 SUMMARY
 ----------------------------------------
@@ -17,64 +17,64 @@ Average Response Time: 1.42s
 Success Rate: 83.3%
 
 Quality Scores:
-  - Accuracy: 0.92 ✅ GOOD
-  - Empathy: 0.88 ✅ GOOD
-  - Relevance: 0.95 ✅ GOOD
-  - Conciseness: 0.65 ⚠️ NEEDS IMPROVEMENT
+  - Accuracy: 0.92 GOOD
+  - Empathy: 0.88 GOOD
+  - Relevance: 0.95 GOOD
+  - Conciseness: 0.65 NEEDS IMPROVEMENT
 
 DETAILED TEST RESULTS
 ----------------------------------------
-✅ TestCase_1_ReservationLookup - PASSED
+PASS TestCase_1_ReservationLookup - PASSED
    Response Time: 1.20s
    Agent Response: I found your reservation for John Smith. Room 303, checking in November 20th....
    Expectations:
-     ✅ topicSequence: Expected 'ReservationManagement', Got 'ReservationManagement'
-     ✅ actionSequence: Expected 'SearchReservation', Got 'SearchReservation'
-     ✅ stringMatch: Expected 'reservation', Got 'I found your reservation'
-     ✅ qualityMetric: accuracy = 0.92
+     PASS topicSequence: Expected 'ReservationManagement', Got 'ReservationManagement'
+     PASS actionSequence: Expected 'SearchReservation', Got 'SearchReservation'
+     PASS stringMatch: Expected 'reservation', Got 'I found your reservation'
+     PASS qualityMetric: accuracy = 0.92
 
-✅ TestCase_2_ReservationModification - PASSED
+PASS TestCase_2_ReservationModification - PASSED
    Response Time: 1.50s
    Agent Response: I'll update your check-in date to tomorrow. Let me process that change for you....
    Expectations:
-     ✅ topicSequence: Expected 'ReservationModification', Got 'ReservationModification'
-     ✅ actionSequence: Expected 'ModifyReservation', Got 'ModifyReservation'
-     ✅ stringMatch: Expected 'check-in', Got 'I'll update your check-in date'
+     PASS topicSequence: Expected 'ReservationModification', Got 'ReservationModification'
+     PASS actionSequence: Expected 'ModifyReservation', Got 'ModifyReservation'
+     PASS stringMatch: Expected 'check-in', Got 'I'll update your check-in date'
 
-✅ TestCase_1_ScheduleUpdate - PASSED
+PASS TestCase_1_ScheduleUpdate - PASSED
    Response Time: 0.80s
    Agent Response: Sarah's schedule has been updated to morning shift for this week....
    Expectations:
-     ✅ topicSequence: Expected 'EmployeeScheduling', Got 'EmployeeScheduling'
-     ✅ actionSequence: Expected 'UpdateSchedule', Got 'UpdateSchedule'
-     ✅ stringMatch: Expected 'schedule updated', Got 'Sarah's schedule has been updated'
+     PASS topicSequence: Expected 'EmployeeScheduling', Got 'EmployeeScheduling'
+     PASS actionSequence: Expected 'UpdateSchedule', Got 'UpdateSchedule'
+     PASS stringMatch: Expected 'schedule updated', Got 'Sarah's schedule has been updated'
 
-✅ TestCase_1_ComplaintHandling - PASSED
+PASS TestCase_1_ComplaintHandling - PASSED
    Response Time: 1.80s
    Agent Response: I sincerely apologize for the noise issue in your room. Let me arrange for immediate assistance....
    Expectations:
-     ✅ topicSequence: Expected 'CustomerComplaint', Got 'CustomerComplaint'
-     ✅ actionSequence: Expected 'HandleComplaint', Got 'HandleComplaint'
-     ✅ stringMatch: Expected 'apologize', Got 'I sincerely apologize for the inconvenience'
-     ✅ qualityMetric: empathy = 0.88
+     PASS topicSequence: Expected 'CustomerComplaint', Got 'CustomerComplaint'
+     PASS actionSequence: Expected 'HandleComplaint', Got 'HandleComplaint'
+     PASS stringMatch: Expected 'apologize', Got 'I sincerely apologize for the inconvenience'
+     PASS qualityMetric: empathy = 0.88
 
-✅ TestCase_2_ActivityRecommendation - PASSED
+PASS TestCase_2_ActivityRecommendation - PASSED
    Response Time: 1.10s
    Agent Response: We have great family activities including Kids Club, Mini Golf, and Family Pool area....
    Expectations:
-     ✅ topicSequence: Expected 'ActivityRecommendation', Got 'ActivityRecommendation'
-     ✅ actionSequence: Expected 'RecommendActivities', Got 'RecommendActivities'
-     ✅ stringMatch: Expected 'family', Got 'great family activities'
-     ✅ qualityMetric: relevance = 0.95
+     PASS topicSequence: Expected 'ActivityRecommendation', Got 'ActivityRecommendation'
+     PASS actionSequence: Expected 'RecommendActivities', Got 'RecommendActivities'
+     PASS stringMatch: Expected 'family', Got 'great family activities'
+     PASS qualityMetric: relevance = 0.95
 
-❌ TestCase_1_MultiTurnBooking - FAILED
+FAIL TestCase_1_MultiTurnBooking - FAILED
    Response Time: 2.10s
    Agent Response: I can help you with room information. Our rooms range from standard to presidential suites with vari...
    Failure Reason: Agent did not provide specific pricing information as expected
    Expectations:
-     ✅ topicSequence: Expected 'PricingInquiry', Got 'PricingInquiry'
-     ❌ actionSequence: Expected 'ProvidePricing', Got 'GeneralInquiry'
-     ❌ qualityMetric: conciseness = 0.65
+     PASS topicSequence: Expected 'PricingInquiry', Got 'PricingInquiry'
+     FAIL actionSequence: Expected 'ProvidePricing', Got 'GeneralInquiry'
+     FAIL qualityMetric: conciseness = 0.65
 
 RECOMMENDATIONS
 ----------------------------------------
