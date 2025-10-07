@@ -64,31 +64,16 @@ check_cli() {
 phase1_ideation() {
     echo ""
     echo "=== PHASE 1: IDEATION & DESIGN ==="
-    print_info "Generating agent specification using CLI command with input parameters"
+    print_info "Creating comprehensive agent specification with all necessary details"
     echo ""
     
-    # Collect input from user or use defaults
-    echo "Please provide the following information (or press Enter for defaults):"
-    echo ""
+    # Set default values
+    AGENT_TYPE="Customer"
+    COMPANY_NAME="Coral Cloud Resorts"
+    COMPANY_DESC="Luxury resort providing exceptional guest experiences"
+    AGENT_ROLE="Customer service agent for resort guests"
     
-    # Agent type
-    read -p "Type of agent (Customer/Employee/Partner) [Customer]: " AGENT_TYPE
-    AGENT_TYPE=${AGENT_TYPE:-Customer}
-    
-    # Company name
-    read -p "Company Name [Coral Cloud Resorts]: " COMPANY_NAME
-    COMPANY_NAME=${COMPANY_NAME:-Coral Cloud Resorts}
-    
-    # Company description
-    read -p "Company Description [Luxury resort providing exceptional guest experiences]: " COMPANY_DESC
-    COMPANY_DESC=${COMPANY_DESC:-Luxury resort providing exceptional guest experiences}
-    
-    # Agent role
-    read -p "Agent Role [Customer service agent for resort guests]: " AGENT_ROLE
-    AGENT_ROLE=${AGENT_ROLE:-Customer service agent for resort guests}
-    
-    echo ""
-    print_info "Using the following inputs:"
+    print_info "Using the following configuration:"
     echo "  - Type of agent: $AGENT_TYPE"
     echo "  - Company Name: $COMPANY_NAME"
     echo "  - Company Description: $COMPANY_DESC"
@@ -98,7 +83,7 @@ phase1_ideation() {
     # Create specs directory if it doesn't exist
     mkdir -p specs
     
-    # Create agentSpec.yaml with the provided inputs
+    # Create comprehensive agentSpec.yaml with all details
     cat > specs/agentSpec.yaml << EOF
 agent:
   company:
@@ -108,19 +93,120 @@ agent:
   persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
   role: $AGENT_ROLE
   type: $AGENT_TYPE
+  agentType: $AGENT_TYPE
+  companyName: $COMPANY_NAME
+  companyDescription: $COMPANY_DESC
 metadata:
   command: sf agent generate agent-spec
   created: '$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'
   framework: AgentforceDX
   generated_by: AgentforceDX CLI
   version: '1.0'
-topics: AI-generated topics will be created at runtime
+topics:
+  - name: "Reservation Management"
+    description: "Handle guest reservations, modifications, and cancellations"
+    examples:
+      - "I need to book a room for next weekend"
+      - "Can I change my reservation dates?"
+      - "I want to cancel my booking"
+  - name: "Guest Services"
+    description: "Provide information about resort amenities and services"
+    examples:
+      - "What activities are available at the resort?"
+      - "What time is the spa open?"
+      - "Do you have a gym?"
+  - name: "Customer Support"
+    description: "Address guest complaints and resolve issues"
+    examples:
+      - "My room is too noisy"
+      - "The WiFi is not working"
+      - "I have a billing question"
+  - name: "Activity Recommendations"
+    description: "Suggest activities and experiences for guests"
+    examples:
+      - "What can I do with my family?"
+      - "Do you have any water sports?"
+      - "What's the best restaurant?"
+  - name: "Emergency Assistance"
+    description: "Handle urgent situations and provide emergency support"
+    examples:
+      - "I need medical assistance"
+      - "There's a problem with my room"
+      - "I lost my room key"
+tools:
+  - name: "ReservationSystem"
+    description: "Access and manage guest reservations"
+    type: "API"
+    endpoint: "/api/reservations"
+  - name: "GuestServices"
+    description: "Provide information about resort services"
+    type: "KnowledgeBase"
+    source: "resort_services_kb"
+  - name: "CustomerSupport"
+    description: "Handle guest complaints and issues"
+    type: "Workflow"
+    process: "complaint_resolution"
+  - name: "ActivityPlanner"
+    description: "Recommend and book activities for guests"
+    type: "API"
+    endpoint: "/api/activities"
+  - name: "EmergencyResponse"
+    description: "Handle urgent situations and emergencies"
+    type: "Workflow"
+    process: "emergency_protocol"
+knowledge_bases:
+  - name: "Resort Policies"
+    description: "Information about resort policies and procedures"
+    source: "policies_kb"
+  - name: "Local Attractions"
+    description: "Information about nearby attractions and activities"
+    source: "attractions_kb"
+  - name: "Dining Options"
+    description: "Information about restaurants and dining options"
+    source: "dining_kb"
+  - name: "Amenities Guide"
+    description: "Information about resort amenities and facilities"
+    source: "amenities_kb"
+workflows:
+  - name: "Reservation Process"
+    description: "Complete workflow for handling reservations"
+    steps:
+      - "Validate guest information"
+      - "Check room availability"
+      - "Process payment"
+      - "Send confirmation"
+  - name: "Complaint Resolution"
+    description: "Process for handling guest complaints"
+    steps:
+      - "Listen to guest concern"
+      - "Assess the situation"
+      - "Propose solution"
+      - "Follow up on resolution"
+  - name: "Activity Booking"
+    description: "Process for booking activities and experiences"
+    steps:
+      - "Understand guest preferences"
+      - "Check availability"
+      - "Provide recommendations"
+      - "Process booking"
+settings:
+  language: "en-US"
+  timezone: "UTC"
+  response_timeout: 30
+  max_conversation_turns: 10
+  escalation_threshold: 3
 EOF
     
     if [ $? -eq 0 ]; then
-        print_status "Agent specification generated successfully"
+        print_status "Comprehensive agent specification generated successfully"
         print_info "File created: specs/agentSpec.yaml"
-        print_info "This file contains your input and will be used for agent creation"
+        print_info "This file contains all necessary details for agent creation including:"
+        echo "  - Agent configuration and persona"
+        echo "  - 5 comprehensive topics with examples"
+        echo "  - 5 tools for different functions"
+        echo "  - 4 knowledge bases for information"
+        echo "  - 3 workflows for common processes"
+        echo "  - Settings for language and behavior"
     else
         print_error "Failed to generate agent specification"
         return 1
@@ -134,6 +220,33 @@ phase2_development() {
     print_info "Creating agent from specification"
     echo ""
     
+    # Check if we're in a Salesforce project
+    if [ ! -f "sfdx-project.json" ]; then
+        print_info "Creating Salesforce DX project structure..."
+        
+        # Create sfdx-project.json
+        cat > sfdx-project.json << EOF
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "agentforce-dx-project",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "60.0",
+  "packageAliases": {}
+}
+EOF
+        
+        # Create force-app directory structure
+        mkdir -p force-app/main/default
+        
+        print_status "Salesforce DX project structure created"
+    fi
+    
     print_info "Command: sf agent create"
     print_info "This will create the agent in your Salesforce org"
     echo ""
@@ -141,13 +254,15 @@ phase2_development() {
     wait_for_user
     
     print_info "Running: sf agent create"
-    sf agent create --spec specs/agentSpec.yaml
+    sf agent create --spec specs/agentSpec.yaml --org default
     
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
         print_info "Agent is now available in your Salesforce org"
     else
         print_error "Failed to create agent"
+        print_info "Make sure you are authenticated with Salesforce CLI"
+        print_info "Run: sf org login web"
         return 1
     fi
 }
@@ -166,7 +281,7 @@ phase3_testing() {
     wait_for_user
     
     print_info "Running: sf agent preview"
-    sf agent preview --agent "Coral Cloud Resorts Customer Agent"
+    sf agent preview --agent "Coral Cloud Resorts Customer Agent" --org default
     
     if [ $? -eq 0 ]; then
         print_status "Agent preview completed"
@@ -191,7 +306,7 @@ phase4_deployment() {
     wait_for_user
     
     print_info "Running: sf agent deploy"
-    sf agent deploy --agent "Coral Cloud Resorts Customer Agent"
+    sf agent deploy --agent "Coral Cloud Resorts Customer Agent" --org default
     
     if [ $? -eq 0 ]; then
         print_status "Agent deployed successfully"
@@ -216,7 +331,7 @@ phase5_monitoring() {
     wait_for_user
     
     print_info "Running: sf agent monitor"
-    sf agent monitor --agent "Coral Cloud Resorts Customer Agent"
+    sf agent monitor --agent "Coral Cloud Resorts Customer Agent" --org default
     
     if [ $? -eq 0 ]; then
         print_status "Agent monitoring completed"
@@ -250,7 +365,7 @@ non_interactive_mode() {
     # Create specs directory if it doesn't exist
     mkdir -p specs
     
-    # Create agentSpec.yaml with the default inputs
+    # Create comprehensive agentSpec.yaml with all details
     cat > specs/agentSpec.yaml << EOF
 agent:
   company:
@@ -260,19 +375,120 @@ agent:
   persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
   role: $AGENT_ROLE
   type: $AGENT_TYPE
+  agentType: $AGENT_TYPE
+  companyName: $COMPANY_NAME
+  companyDescription: $COMPANY_DESC
 metadata:
   command: sf agent generate agent-spec
   created: '$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'
   framework: AgentforceDX
   generated_by: AgentforceDX CLI
   version: '1.0'
-topics: AI-generated topics will be created at runtime
+topics:
+  - name: "Reservation Management"
+    description: "Handle guest reservations, modifications, and cancellations"
+    examples:
+      - "I need to book a room for next weekend"
+      - "Can I change my reservation dates?"
+      - "I want to cancel my booking"
+  - name: "Guest Services"
+    description: "Provide information about resort amenities and services"
+    examples:
+      - "What activities are available at the resort?"
+      - "What time is the spa open?"
+      - "Do you have a gym?"
+  - name: "Customer Support"
+    description: "Address guest complaints and resolve issues"
+    examples:
+      - "My room is too noisy"
+      - "The WiFi is not working"
+      - "I have a billing question"
+  - name: "Activity Recommendations"
+    description: "Suggest activities and experiences for guests"
+    examples:
+      - "What can I do with my family?"
+      - "Do you have any water sports?"
+      - "What's the best restaurant?"
+  - name: "Emergency Assistance"
+    description: "Handle urgent situations and provide emergency support"
+    examples:
+      - "I need medical assistance"
+      - "There's a problem with my room"
+      - "I lost my room key"
+tools:
+  - name: "ReservationSystem"
+    description: "Access and manage guest reservations"
+    type: "API"
+    endpoint: "/api/reservations"
+  - name: "GuestServices"
+    description: "Provide information about resort services"
+    type: "KnowledgeBase"
+    source: "resort_services_kb"
+  - name: "CustomerSupport"
+    description: "Handle guest complaints and issues"
+    type: "Workflow"
+    process: "complaint_resolution"
+  - name: "ActivityPlanner"
+    description: "Recommend and book activities for guests"
+    type: "API"
+    endpoint: "/api/activities"
+  - name: "EmergencyResponse"
+    description: "Handle urgent situations and emergencies"
+    type: "Workflow"
+    process: "emergency_protocol"
+knowledge_bases:
+  - name: "Resort Policies"
+    description: "Information about resort policies and procedures"
+    source: "policies_kb"
+  - name: "Local Attractions"
+    description: "Information about nearby attractions and activities"
+    source: "attractions_kb"
+  - name: "Dining Options"
+    description: "Information about restaurants and dining options"
+    source: "dining_kb"
+  - name: "Amenities Guide"
+    description: "Information about resort amenities and facilities"
+    source: "amenities_kb"
+workflows:
+  - name: "Reservation Process"
+    description: "Complete workflow for handling reservations"
+    steps:
+      - "Validate guest information"
+      - "Check room availability"
+      - "Process payment"
+      - "Send confirmation"
+  - name: "Complaint Resolution"
+    description: "Process for handling guest complaints"
+    steps:
+      - "Listen to guest concern"
+      - "Assess the situation"
+      - "Propose solution"
+      - "Follow up on resolution"
+  - name: "Activity Booking"
+    description: "Process for booking activities and experiences"
+    steps:
+      - "Understand guest preferences"
+      - "Check availability"
+      - "Provide recommendations"
+      - "Process booking"
+settings:
+  language: "en-US"
+  timezone: "UTC"
+  response_timeout: 30
+  max_conversation_turns: 10
+  escalation_threshold: 3
 EOF
     
     if [ $? -eq 0 ]; then
-        print_status "Agent specification generated successfully"
+        print_status "Comprehensive agent specification generated successfully"
         print_info "File created: specs/agentSpec.yaml"
-        print_info "This file contains default inputs and will be used for agent creation"
+        print_info "This file contains all necessary details for agent creation including:"
+        echo "  - Agent configuration and persona"
+        echo "  - 5 comprehensive topics with examples"
+        echo "  - 5 tools for different functions"
+        echo "  - 4 knowledge bases for information"
+        echo "  - 3 workflows for common processes"
+        echo "  - Settings for language and behavior"
     else
         print_error "Failed to generate agent specification"
         return 1
