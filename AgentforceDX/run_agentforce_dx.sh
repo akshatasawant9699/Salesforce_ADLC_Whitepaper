@@ -91,9 +91,8 @@ phase1_ideation() {
     read -p "Agent Role [Customer service agent for resort guests]: " AGENT_ROLE
     AGENT_ROLE=${AGENT_ROLE:-Customer service agent for resort guests}
     
-    # Agent Name
-    read -p "Agent Name [${COMPANY_NAME} Customer Agent]: " AGENT_NAME
-    AGENT_NAME=${AGENT_NAME:-${COMPANY_NAME} Customer Agent}
+    # Auto-generate agent name from company name
+    AGENT_NAME="${COMPANY_NAME} Customer Agent"
     
     # Use company description as agent description
     AGENT_DESC="$COMPANY_DESC"
@@ -392,7 +391,7 @@ non_interactive_mode() {
     TONE="casual"
     
     print_info "Using the following default inputs:"
-    echo "  - Agent Name: $AGENT_NAME"
+    echo "  - Agent Name: $AGENT_NAME (auto-generated from company name)"
     echo "  - Agent Description: $AGENT_DESC (same as company description)"
     echo "  - Type of agent: $AGENT_TYPE"
     echo "  - Company Name: $COMPANY_NAME"
