@@ -156,6 +156,9 @@ phase1_ideation() {
     # Auto-generate agent name from company name
     AGENT_NAME="${COMPANY_NAME} Customer Agent"
     
+    # Auto-generate API name from agent name (replace spaces with underscores)
+    AGENT_API_NAME=$(echo "$AGENT_NAME" | sed 's/ /_/g')
+    
     # Use company description as agent description
     AGENT_DESC="$COMPANY_DESC"
     
@@ -165,6 +168,7 @@ phase1_ideation() {
     echo ""
     print_info "Using the following configuration:"
     echo "  - Agent Name: $AGENT_NAME"
+    echo "  - API Name: $AGENT_API_NAME (auto-generated)"
     echo "  - Agent Description: $AGENT_DESC"
     echo "  - Type of agent: $AGENT_TYPE"
     echo "  - Company Name: $COMPANY_NAME"
@@ -329,7 +333,7 @@ EOF
     read -p "Do you want to preview the agent structure before creating? (y/n): " PREVIEW_CHOICE
     if [ "$PREVIEW_CHOICE" = "y" ] || [ "$PREVIEW_CHOICE" = "Y" ]; then
         print_info "Running: sf agent create --preview"
-        sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME" --preview
+        echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME" --preview
         
         if [ $? -eq 0 ]; then
             print_status "Agent preview completed"
@@ -343,8 +347,8 @@ EOF
     
     wait_for_user
     
-    print_info "Running: sf agent create"
-    sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
+        print_info "Running: sf agent create"
+        echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
@@ -445,11 +449,13 @@ non_interactive_mode() {
     COMPANY_DESC="Luxury resort providing exceptional guest experiences"
     AGENT_ROLE="Customer service agent for resort guests"
     AGENT_NAME="${COMPANY_NAME} Customer Agent"
+    AGENT_API_NAME=$(echo "$AGENT_NAME" | sed 's/ /_/g')
     AGENT_DESC="$COMPANY_DESC"
     TONE="casual"
     
     print_info "Using the following default inputs:"
     echo "  - Agent Name: $AGENT_NAME (auto-generated from company name)"
+    echo "  - API Name: $AGENT_API_NAME (auto-generated from agent name)"
     echo "  - Agent Description: $AGENT_DESC (same as company description)"
     echo "  - Type of agent: $AGENT_TYPE"
     echo "  - Company Name: $COMPANY_NAME"
