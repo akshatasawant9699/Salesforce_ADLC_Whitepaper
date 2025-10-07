@@ -1,6 +1,6 @@
 # The Agent Development Lifecycle (ADLC) - Complete Implementation
 
-This repository contains a comprehensive implementation of **The Agent Development Lifecycle** using two distinct approaches: **Python SDK** and **AgentforceDX**. Both implementations demonstrate all five phases of agent development from ideation to monitoring, providing developers with complete, production-ready solutions.
+This repository contains a comprehensive implementation of **The Agent Development Lifecycle** using two distinct approaches: **Python SDK** and **AgentforceDX**. Both implementations demonstrate all five phases of agent development from ideation to monitoring, providing developers with complete, production-ready solutions aligned with the official Agent Development Lifecycle paper.
 
 ## Overview
 
@@ -14,19 +14,20 @@ Both implementations follow the same ADLC phases but use different tools and app
 ## Repository Structure
 
 ```
-├── Agent Python SDK/                    # Python SDK Implementation
-│   ├── agent-sdk-adlc-notebook.ipynb    # Main implementation notebook
-│   ├── README.md                        # Python SDK documentation
-│   ├── agent_spec.json                  # Agent specification
-│   └── agent_outputs/                   # Organized output files by phases
-│       ├── phase1_ideation/             # Agent specifications
-│       ├── phase2_development/          # Development outputs
-│       ├── phase3_testing/              # Test case XML files
-│       ├── phase4_deployment/           # Deployment metadata
-│       └── phase5_monitoring/           # Dashboards and monitoring
+├── README.md                           # This comprehensive documentation
+├── Agent Python SDK/                   # Python SDK Implementation (LOCKED)
+│   ├── agent-sdk-adlc-notebook.ipynb   # Main implementation notebook
+│   ├── agent_spec.json                 # Agent specification
+│   └── agent_outputs/                  # Organized output files by phases
+│       ├── phase1_ideation/            # Agent specifications
+│       ├── phase2_development/         # Development outputs
+│       ├── phase3_testing/             # Test case XML files
+│       ├── phase4_deployment/          # Deployment metadata
+│       └── phase5_monitoring/          # Dashboards and monitoring
 └── AgentforceDX/                       # AgentforceDX Implementation
-    ├── ADLC_AgentforceDX.ipynb          # Main implementation notebook
-    └── README.md                        # AgentforceDX documentation
+    ├── ADLC_AgentforceDX.ipynb         # Main implementation notebook
+    ├── run_agentforce_dx.sh            # CLI script for sequential execution
+    └── VS_CODE_SETUP.md                # VS Code setup guide
 ```
 
 ## The Agent Development Lifecycle
@@ -219,21 +220,35 @@ sf agents --help
    - Run Phase 5: Monitoring & Tuning
 
 #### AgentforceDX Implementation
-1. **Open the Notebook**:
-   ```bash
-   jupyter notebook "AgentforceDX/ADLC_AgentforceDX.ipynb"
-   ```
 
-2. **Configure Salesforce Org**:
-   - Authenticate with your Salesforce org
-   - Ensure Agentforce is enabled
+**Option 1: CLI Script (Recommended)**
+```bash
+# Run complete ADLC implementation
+./AgentforceDX/run_agentforce_dx.sh
+```
 
-3. **Execute Phases Sequentially**:
-   - Run Phase 1: Ideation & Design (Interactive specification generation)
-   - Run Phase 2: Development (CLI-based agent creation)
-   - Run Phase 3: Testing & Validation (Comprehensive testing)
-   - Run Phase 4: Deployment & Release (Multi-environment deployment)
-   - Run Phase 5: Monitoring & Tuning (Performance monitoring)
+**Option 2: VS Code Tasks**
+1. Open VS Code in your project directory
+2. Press `Ctrl+Shift+P` → `Tasks: Run Task`
+3. Select individual AgentforceDX tasks
+
+**Option 3: Individual Commands**
+```bash
+# Phase 1: Generate agent specification
+sf agent generate agent-spec
+
+# Phase 2: Create agent
+sf agents create --spec specs/agentSpec.yaml --org your-org
+
+# Phase 3: Test agent
+sf agents preview --agent "Agent Name" --org your-org
+
+# Phase 4: Deploy agent
+sf agents deploy --agent "Agent Name" --org your-org
+
+# Phase 5: Monitor agent
+sf agents monitor --agent "Agent Name" --org your-org
+```
 
 ## Key Features
 
@@ -264,6 +279,7 @@ sf agents --help
 - **CLI-Based Workflows**: Complete agent lifecycle management through command line
 - **Multi-Environment Deployment**: Staging and production deployment with validation
 - **Comprehensive Monitoring**: Performance analytics and optimization recommendations
+- **Notebook-Like Experience**: Sequential execution with interactive prompts
 
 ## Technical Implementation
 
@@ -335,8 +351,8 @@ sf agents --help
 
 - **Agent Python SDK/agent-sdk-adlc-notebook.ipynb**: Interactive implementation with all 5 phases
 - **AgentforceDX/ADLC_AgentforceDX.ipynb**: Interactive implementation with all 5 phases
-- **Agent Python SDK/README.md**: Python SDK specific documentation
-- **AgentforceDX/README.md**: AgentforceDX specific documentation
+- **AgentforceDX/run_agentforce_dx.sh**: CLI script for sequential execution
+- **AgentforceDX/VS_CODE_SETUP.md**: VS Code setup guide
 
 ## Contributing
 
@@ -375,6 +391,8 @@ For questions and support:
 - ✅ Clean repository structure with organized output files
 - ✅ No emojis, professional presentation
 - ✅ Aligned with "The Agent Development Lifecycle" paper
+- ✅ CLI script for notebook-like experience
+- ✅ VS Code integration with task runner
 
 ## Resources
 
@@ -391,3 +409,4 @@ For questions and support:
 ### General
 - [Salesforce Agentforce Documentation](https://developer.salesforce.com/docs/agentforce)
 - [The Agent Development Lifecycle Paper](https://developer.salesforce.com/docs/agentforce-lifecycle)
+- [Trailhead: Create an Agent Using Agentforce DX](https://trailhead.salesforce.com/content/learn/projects/create-an-agent-using-pro-code-tools/get-started-with-agentforce-dx)
