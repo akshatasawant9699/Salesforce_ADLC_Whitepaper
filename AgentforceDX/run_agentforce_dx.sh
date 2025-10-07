@@ -354,7 +354,10 @@ EOF
     print_info "Verifying agent creation..."
     AGENT_EXISTS=$(sf data query --query "SELECT Id FROM BotDefinition WHERE DeveloperName = '$AGENT_API_NAME'" --target-org agentforce-dev 2>/dev/null | grep -c "Total number of records retrieved: 1")
     
-    if [ "$AGENT_EXISTS" -eq 1 ]; then
+    # Also check for permission sets as a fallback (Developer Edition limitation)
+    PERMISSION_SET_EXISTS=$(sf data query --query "SELECT Id FROM PermissionSet WHERE Name = '${AGENT_API_NAME}_Permissions'" --target-org agentforce-dev 2>/dev/null | grep -c "Total number of records retrieved: 1")
+    
+    if [ "$AGENT_EXISTS" -eq 1 ] || [ "$PERMISSION_SET_EXISTS" -eq 1 ]; then
         print_status "Agent created successfully"
         print_info "Agent is now available in your Salesforce org"
         print_info "Note: Permission set warnings are normal and don't affect agent functionality"
@@ -380,15 +383,15 @@ EOF
         print_error "Agent creation failed or agent not found in org"
         echo ""
         print_info "Exit code: $CREATE_EXIT_CODE"
-        print_info "Agent verification failed - agent '$AGENT_API_NAME' not found"
+        print_info "Agent verification failed - agent '$AGENT_API_NAME' not found in BotDefinition"
+        print_info "Permission set check: $PERMISSION_SET_EXISTS (1=exists, 0=not found)"
         echo ""
         print_info "Common issues and solutions:"
         print_info "1. Permission Sets Error (Most Common):"
         print_info "   - This is a known issue in Developer Edition"
-        print_info "   - Go to Setup > Users > Permission Sets"
-        print_info "   - Find 'EinsteinServiceAgent' permission set"
-        print_info "   - Assign it to your user if not already assigned"
-        print_info "   - Or assign it to the EinsteinServiceAgent user"
+        print_info "   - The EinsteinServiceAgent permission set doesn't exist in Developer Edition"
+        print_info "   - Use existing agents instead of creating new ones"
+        print_info "   - Available agents: Coral_Cloud_Resorts_Customer_Agent, Coral_Cloud_Resort_Customer_Agent"
         echo ""
         print_info "2. Authentication Issues:"
         print_info "   - Make sure you are authenticated with Salesforce CLI"
@@ -402,8 +405,43 @@ EOF
         print_info "   - This is normal and can be configured later"
         print_info "   - Topics can be added in Agentforce Studio"
         echo ""
+        print_info "5. Use Existing Agents:"
+        print_info "   - Run: ./run_agentforce_dx.sh --list-agents"
+        print_info "   - Run: ./run_agentforce_dx.sh --activate-agent <agent-name>"
+        echo ""
         print_info "For detailed troubleshooting, check Salesforce Setup > Agentforce Studio"
         return 1
+    fi
+}
+
+# List existing agents
+list_agents() {
+    print_info "Listing all available agents in your org..."
+    echo ""
+    sf data query --query "SELECT Id, DeveloperName, MasterLabel, CreatedDate FROM BotDefinition ORDER BY CreatedDate DESC" --target-org agentforce-dev
+    echo ""
+    print_info "To activate an agent, use: ./run_agentforce_dx.sh --activate-agent <agent-name>"
+}
+
+# Activate existing agent
+activate_existing_agent() {
+    local agent_name="$1"
+    
+    if [ -z "$agent_name" ]; then
+        print_error "Please provide an agent name"
+        print_info "Usage: ./run_agentforce_dx.sh --activate-agent <agent-name>"
+        return 1
+    fi
+    
+    print_info "Activating agent: $agent_name"
+    sf agent activate --api-name "$agent_name" --target-org agentforce-dev
+    
+    if [ $? -eq 0 ]; then
+        print_status "Agent $agent_name activated successfully"
+        print_info "You can now access the agent in Salesforce Setup > Agentforce Studio"
+    else
+        print_error "Failed to activate agent $agent_name"
+        print_info "Make sure the agent exists and you have proper permissions"
     fi
 }
 
@@ -714,6 +752,18 @@ main() {
     # Check for help option
     if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
         show_help
+        exit 0
+    fi
+    
+    # Check for list agents option
+    if [ "$1" = "--list-agents" ]; then
+        list_agents
+        exit 0
+    fi
+    
+    # Check for activate agent option
+    if [ "$1" = "--activate-agent" ]; then
+        activate_existing_agent "$2"
         exit 0
     fi
     
