@@ -374,21 +374,45 @@ phase3_testing() {
     
     wait_for_user
     
-    print_info "Running: sf agent preview"
-    print_info "Note: This command requires additional setup (client-app, target-org)"
-    print_info "For now, we'll skip the preview and proceed to deployment"
-    echo ""
-    print_status "Skipping preview (requires additional configuration)"
-    print_info "To enable preview, you need to:"
-    print_info "1. Create a linked client app with 'org login web --client-app'"
-    print_info "2. Set up the target org properly"
-    print_info "3. Use: sf agent preview --api-name $AGENT_API_NAME --target-org agentforce-dev --client-app <app-name>"
+    print_info "Step 1: Generate test spec for the agent"
+    print_info "Running: sf agent generate test-spec"
+    sf agent generate test-spec --agent "$AGENT_NAME" --output-dir specs/
     
     if [ $? -eq 0 ]; then
-        print_status "Agent preview completed"
-        print_info "You can test conversations with your agent"
+        print_status "Test spec generated successfully"
+        print_info "Test spec file created in specs/ directory"
+        echo ""
+        
+        print_info "Step 2: Create agent test in Salesforce org"
+        print_info "Running: sf agent test create"
+        sf agent test create --spec specs/testSpec.yaml --agent "$AGENT_NAME"
+        
+        if [ $? -eq 0 ]; then
+            print_status "Agent test created successfully"
+            print_info "Test metadata synced to your DX project"
+            echo ""
+            
+            print_info "Step 3: Run agent tests"
+            print_info "Running: sf agent test run"
+            sf agent test run --agent "$AGENT_NAME"
+            
+            if [ $? -eq 0 ]; then
+                print_status "Agent tests completed successfully"
+                print_info "All tests passed - agent is ready for deployment"
+            else
+                print_error "Some tests failed"
+                print_info "Review test results and iterate on agent configuration"
+                print_info "Use 'sf agent preview' to test conversations manually"
+                return 1
+            fi
+        else
+            print_error "Failed to create agent test"
+            print_info "Make sure the agent exists and you are authenticated"
+            return 1
+        fi
     else
-        print_error "Failed to preview agent"
+        print_error "Failed to generate test spec"
+        print_info "Make sure the agent exists and you are authenticated"
         return 1
     fi
 }
