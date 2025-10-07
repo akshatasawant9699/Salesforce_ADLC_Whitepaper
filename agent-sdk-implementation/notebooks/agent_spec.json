@@ -1,11 +1,11 @@
 {
-  "name": "Coral Cloud Resort Resort Manager",
-  "description": "The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly. for Coral Cloud Resort",
+  "name": "Coral CLoud Resort Resort Manager",
+  "description": "The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly. for Coral CLoud Resort",
   "agent_type": "External",
-  "company_name": "Coral Cloud Resort",
+  "company_name": "Coral CLoud Resort",
   "company_description": "Coral Cloud Resorts provides customers with exceptional destination activities, unforgettable experiences, and reservation services, all backed by a commitment to provide top-notch customer service.",
   "role": "The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly.",
-  "tone": "Casual",
+  "tone": "casual",
   "topics": [
     {
       "name": "Customer Complaint Resolution",

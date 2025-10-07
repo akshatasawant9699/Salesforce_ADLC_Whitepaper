@@ -2,7 +2,7 @@
 <AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
   <fullName>ReservationManagement_Tests</fullName>
   <label>Reservationmanagement Tests</label>
-  <agentVersion>Coral Cloud Resort Resort Manager</agentVersion>
+  <agentVersion>Coral CLoud Resort Resort Manager</agentVersion>
   <testCases>
     <name>TestCase_1_ReservationLookup</name>
     <inputs>
