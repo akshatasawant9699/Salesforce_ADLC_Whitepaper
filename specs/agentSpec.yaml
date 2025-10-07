@@ -1,51 +1,34 @@
+# Required top-level properties for AgentforceDX CLI
+agentType: customer
+role: The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly
+companyName: Coral Cloud Resorts
+companyDescription: Coral Cloud Resorts provides customers with exceptional destination activities, unforgettable experiences, and reservation services, all backed by a commitment to provide top-notch customer service.
+
 agent:
   company:
     description: Coral Cloud Resorts provides customers with exceptional destination activities, unforgettable experiences, and reservation services, all backed by a commitment to provide top-notch customer service.
     name: Coral Cloud Resorts
   name: Coral Cloud Resorts Customer Agent
   persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
-  role: The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly.
+  role: The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly
   type: Customer
-  agentType: Customer
-  companyName: Coral Cloud Resorts
-  companyDescription: Coral Cloud Resorts provides customers with exceptional destination activities, unforgettable experiences, and reservation services, all backed by a commitment to provide top-notch customer service.
 metadata:
   command: sf agent generate agent-spec
-  created: '2025-10-07T13:11:26.3NZ'
+  created: '2025-10-07T13:18:39.3NZ'
   framework: AgentforceDX
   generated_by: AgentforceDX CLI
   version: '1.0'
 topics:
   - name: "Reservation Management"
     description: "Handle guest reservations, modifications, and cancellations"
-    examples:
-      - "I need to book a room for next weekend"
-      - "Can I change my reservation dates?"
-      - "I want to cancel my booking"
   - name: "Guest Services"
     description: "Provide information about resort amenities and services"
-    examples:
-      - "What activities are available at the resort?"
-      - "What time is the spa open?"
-      - "Do you have a gym?"
   - name: "Customer Support"
     description: "Address guest complaints and resolve issues"
-    examples:
-      - "My room is too noisy"
-      - "The WiFi is not working"
-      - "I have a billing question"
   - name: "Activity Recommendations"
     description: "Suggest activities and experiences for guests"
-    examples:
-      - "What can I do with my family?"
-      - "Do you have any water sports?"
-      - "What's the best restaurant?"
   - name: "Emergency Assistance"
     description: "Handle urgent situations and provide emergency support"
-    examples:
-      - "I need medical assistance"
-      - "There's a problem with my room"
-      - "I lost my room key"
 tools:
   - name: "ReservationSystem"
     description: "Access and manage guest reservations"
