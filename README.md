@@ -10,22 +10,24 @@ The Agent Development Lifecycle (ADLC) is a structured framework for developing 
 
 ```
 SF_ADLC_Whitepaper/
-├── agent-sdk-implementation/
-│   ├── notebooks/
-│   │   ├── ADLC_PythonSDK.ipynb    # Complete Python SDK implementation
-│   │   ├── agent_spec.json         # Generated agent specification
-│   │   ├── agent_performance_data.csv # Performance monitoring data
-│   │   └── deploy_agent.py         # Standalone deployment script
-│   ├── agentforcedx/               # DX project with agent metadata
-│   │   ├── force-app/main/default/
-│   │   │   ├── bots/               # Bot metadata
-│   │   │   ├── genAiPlannerBundles/ # AI planner configurations
-│   │   │   └── genAiPlugins/       # AI plugin configurations
-│   │   └── specs/
-│   │       └── agentSpec.yaml     # Agent specification
-│   ├── ADLC_AFDX.md               # Complete Agentforce DX implementation guide
-│   ├── requirements.txt            # Python dependencies
-│   └── README.md                  # This file
+├── Agent Python SDK/                    # Main ADLC implementation
+│   ├── ADLC_PythonSDK.ipynb            # Complete Python SDK implementation
+│   ├── README.md                        # Implementation documentation
+│   ├── agent_spec.json                 # Generated agent specification
+│   └── agent_outputs/                   # Organized output files by phases
+│       ├── phase1_ideation/             # Agent specification files
+│       ├── phase3_testing/              # Test case XML files
+│       ├── phase4_deployment/           # Deployment metadata
+│       └── phase5_monitoring/           # Dashboards and monitoring
+├── agentforcedx/                        # Agentforce DX implementation
+│   ├── force-app/main/default/          # Salesforce metadata
+│   │   ├── bots/                        # Bot definitions
+│   │   ├── genAiPlannerBundles/         # AI planner configurations
+│   │   └── genAiPlugins/                # AI plugin configurations
+│   ├── specs/agentSpec.yaml            # Agent specification
+│   └── sfdx-project.json               # DX project configuration
+├── README.md                            # This file
+└── SECURITY_CLEANUP.md                  # Security documentation
 ```
 
 ## Implementation Approaches
@@ -33,9 +35,10 @@ SF_ADLC_Whitepaper/
 ### Python SDK Implementation
 - **Interactive Development**: Jupyter notebook-based implementation
 - **Python SDK**: Uses `agentforce-sdk` for agent creation and management
+- **Salesforce Testing API**: Comprehensive test suite with AiEvaluationDefinition
 - **Data Cloud Integration**: Performance monitoring and analytics
 - **Rapid Prototyping**: Quick iteration and testing
-- **Observability**: Comprehensive monitoring with visualizations
+- **Advanced Observability**: Comprehensive monitoring with visualizations
 
 ### Agentforce DX Implementation
 - **Pro-Code Development**: CLI-based agent development
@@ -51,9 +54,10 @@ SF_ADLC_Whitepaper/
 
 **Python SDK Approach**:
 - Interactive agent specification generation
-- AI-powered topic generation
+- AI-powered topic generation based on company type
 - Company and role definition
 - Tone and personality configuration
+- SDK-compatible JSON specification generation
 
 **Agentforce DX Approach**:
 - CLI-based agent specification creation
@@ -65,10 +69,11 @@ SF_ADLC_Whitepaper/
 **Purpose**: Transform specifications into functional agents with tools and knowledge base.
 
 **Python SDK Approach**:
-- Programmatic agent creation
-- SDK-based configuration
+- Programmatic agent creation using `agentforce-sdk`
+- SDK-based configuration with `Action` classes
 - Automated metadata generation
 - Interactive development environment
+- Centralized credential management
 
 **Agentforce DX Approach**:
 - CLI-based agent creation
@@ -80,10 +85,11 @@ SF_ADLC_Whitepaper/
 **Purpose**: Comprehensive testing to validate behavior, security, and performance.
 
 **Python SDK Approach**:
-- Automated testing frameworks
-- Performance benchmarking
-- Security validation
-- Integration testing
+- **Salesforce Testing API Integration**: Uses `AiEvaluationDefinition` metadata type
+- **Comprehensive Test Suites**: Guest Services, Employee Management, Revenue Optimization
+- **Multi-Dimensional Testing**: Utterances, context variables, conversation history
+- **Quality Metrics**: Accuracy, empathy, relevance, conciseness
+- **Connect API Integration**: Test execution and detailed reports
 
 **Agentforce DX Approach**:
 - CLI-based testing
@@ -95,10 +101,10 @@ SF_ADLC_Whitepaper/
 **Purpose**: Deploy agents to target environments with proper validation.
 
 **Python SDK Approach**:
-- Automated deployment scripts
-- Environment management
-- Release validation
-- Rollback capabilities
+- Automated deployment using `agentforce-sdk`
+- Real agent creation in Salesforce org
+- Deployment verification
+- Builder UI integration
 
 **Agentforce DX Approach**:
 - DX-based deployment
@@ -110,10 +116,12 @@ SF_ADLC_Whitepaper/
 **Purpose**: Monitor performance and optimize based on real-world usage data.
 
 **Python SDK Approach**:
-- Real-time monitoring
-- Performance analytics
-- Automated optimization
-- Visual dashboards
+- **Enhanced Observability**: Comprehensive monitoring class
+- **Multi-Dimensional Metrics**: Response time, success rate, user satisfaction
+- **Performance Dashboards**: Matplotlib and Plotly visualizations
+- **Trace Management**: Execution traces with severity levels
+- **Interactive Visualizations**: Radar charts, heatmaps, gauge charts
+- **Comprehensive Reporting**: Detailed observability reports
 
 **Agentforce DX Approach**:
 - Log monitoring
@@ -125,20 +133,25 @@ SF_ADLC_Whitepaper/
 
 ### Python SDK Implementation
 
-1. **Install Dependencies**
+1. **Navigate to Implementation**
    ```bash
-   cd agent-sdk-implementation
-   pip install -r requirements.txt
+   cd "Agent Python SDK"
    ```
 
-2. **Run the Notebook**
+2. **Install Dependencies**
    ```bash
-   jupyter notebook notebooks/ADLC_PythonSDK.ipynb
+   pip install agentforce-sdk pandas matplotlib seaborn plotly numpy jupyter
    ```
 
-3. **Configure Credentials**
-   - Update placeholder credentials in the notebook
+3. **Run the Notebook**
+   ```bash
+   jupyter notebook ADLC_PythonSDK.ipynb
+   ```
+
+4. **Configure Credentials**
+   - Update Salesforce credentials in Phase 2
    - Ensure you have agentforce-sdk access
+   - Run all phases sequentially (1→2→3→4→5)
 
 ### Agentforce DX Implementation
 
@@ -148,9 +161,8 @@ SF_ADLC_Whitepaper/
    sf update
    ```
 
-2. **Create DX Project**
+2. **Navigate to DX Project**
    ```bash
-   sf project generate --name agentforcedx
    cd agentforcedx
    ```
 
@@ -159,8 +171,10 @@ SF_ADLC_Whitepaper/
    sf org login web --alias agentforce --instance-url https://login.salesforce.com
    ```
 
-4. **Follow the Complete Guide**
-   - See `agent-sdk-implementation/ADLC_AFDX.md` for detailed implementation
+4. **Deploy Agent**
+   ```bash
+   sf project deploy start
+   ```
 
 ## Requirements
 
@@ -197,14 +211,15 @@ SF_ADLC_Whitepaper/
 - Performance monitoring and optimization
 - Real-time observability dashboards
 - Automated performance tuning
+- Salesforce Testing API integration
+- Comprehensive test suite with AiEvaluationDefinition
 
 ## Documentation
 
-- **ADLC_AFDX.md**: Agentforce DX implementation guide with Phase 1 & 2
-- **notebooks/ADLC_PythonSDK.ipynb**: Interactive Python SDK implementation with all 5 phases
-- **notebooks/deploy_agent.py**: Standalone deployment script
-- **specs/agentSpec.yaml**: Agent specification for DX approach
-- **notebooks/agent_spec.json**: Agent specification for Python SDK approach
+- **Agent Python SDK/README.md**: Python SDK implementation documentation
+- **Agent Python SDK/ADLC_PythonSDK.ipynb**: Interactive implementation with all 5 phases
+- **agentforcedx/**: Complete DX project with metadata
+- **SECURITY_CLEANUP.md**: Security best practices
 
 ## Security
 
@@ -212,6 +227,32 @@ SF_ADLC_Whitepaper/
 - Use environment variables or secure credential management
 - All sensitive data is excluded via .gitignore
 - Follow Salesforce security best practices
+- Personal Access Tokens used for GitHub authentication
+
+## Key Technical Achievements
+
+### ✅ Complete ADLC Implementation
+- All 5 phases implemented and tested
+- Both Python SDK and Agentforce DX approaches
+- Production-ready code with comprehensive testing
+
+### ✅ Advanced Testing Integration
+- Salesforce Testing API with AiEvaluationDefinition
+- Comprehensive test suites for all agent capabilities
+- Quality metrics and performance validation
+- Connect API integration for test execution
+
+### ✅ Enhanced Observability
+- Multi-dimensional performance monitoring
+- Interactive dashboards and visualizations
+- Real-time trace management
+- Automated optimization recommendations
+
+### ✅ Clean Repository Structure
+- Single source of truth for ADLC implementation
+- Organized output files by phases
+- Comprehensive documentation
+- No duplicate folders or files
 
 ## Contributing
 
@@ -232,18 +273,18 @@ For questions and support:
 - Review the troubleshooting sections
 - Open an issue for bugs or feature requests
 
+## Repository URL
+
+**https://github.com/akshatasawant9699/Salesforce_ADLC_Whitepaper**
+
 ## Changelog
 
 ### Latest Updates
-- Successfully resolved ADLC_AFDX agent creation issues
-- Switched to new Salesforce org for permission resolution
-- Added comprehensive observability features to Python SDK implementation
-- Removed all emojis for professional documentation
-- Created unified README with both implementation approaches
-- Cleaned up project structure and removed unwanted files
-- Enhanced Phase 5 with detailed timing diagrams and advanced dashboards
-- Added comprehensive monitoring and performance analysis
-- Implemented topic and action performance tracking
-- Added user interaction analytics and error monitoring
-- Created interactive visualizations with Plotly
-- Added system health monitoring and optimization recommendations
+- ✅ Cleaned up repository structure (removed duplicate folders)
+- ✅ Single ADLC implementation in "Agent Python SDK" folder
+- ✅ Complete Python SDK implementation with all 5 phases
+- ✅ Salesforce Testing API integration with AiEvaluationDefinition
+- ✅ Advanced observability and monitoring features
+- ✅ No credentials stored in repository
+- ✅ Production-ready implementation
+- ✅ Comprehensive documentation and examples
