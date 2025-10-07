@@ -60,6 +60,38 @@ check_cli() {
     print_status "AgentforceDX plugin: Available"
 }
 
+# Authenticate with Salesforce
+authenticate_salesforce() {
+    echo ""
+    echo "=== SALESFORCE AUTHENTICATION ==="
+    print_info "Authenticating with Salesforce Developer Edition"
+    echo ""
+    
+    # Set credentials
+    SALESFORCE_USERNAME="akshatasawant2010824@agentforce.com"
+    SALESFORCE_PASSWORD="Ambadnya@9699"
+    ORG_ALIAS="agentforce-dev"
+    
+    print_info "Using Developer Edition credentials"
+    print_info "Username: $SALESFORCE_USERNAME"
+    print_info "Org Alias: $ORG_ALIAS"
+    echo ""
+    
+    # Login to Salesforce
+    print_info "Logging into Salesforce..."
+    sf org login web --alias $ORG_ALIAS --instance-url https://login.salesforce.com --set-default
+    
+    if [ $? -eq 0 ]; then
+        print_status "Successfully authenticated with Salesforce"
+        print_info "Org alias: $ORG_ALIAS"
+        print_info "Instance URL: https://login.salesforce.com"
+    else
+        print_error "Failed to authenticate with Salesforce"
+        print_info "Please check your credentials and try again"
+        return 1
+    fi
+}
+
 # Phase 1: Ideation & Design
 phase1_ideation() {
     echo ""
@@ -76,20 +108,16 @@ phase1_ideation() {
     echo ""
     
     # Type of agent
-    read -p "Type of agent (Customer/Employee/Partner/External) [Customer]: " AGENT_TYPE
-    AGENT_TYPE=${AGENT_TYPE:-Customer}
+    read -p "Type of agent (Customer/Employee/Partner/External): " AGENT_TYPE
     
     # Company Name
-    read -p "Company Name [Coral Cloud Resorts]: " COMPANY_NAME
-    COMPANY_NAME=${COMPANY_NAME:-Coral Cloud Resorts}
+    read -p "Company Name: " COMPANY_NAME
     
     # Company Description
-    read -p "Company Description [Luxury resort providing exceptional guest experiences]: " COMPANY_DESC
-    COMPANY_DESC=${COMPANY_DESC:-Luxury resort providing exceptional guest experiences}
+    read -p "Company Description: " COMPANY_DESC
     
     # Agent Role
-    read -p "Agent Role [Customer service agent for resort guests]: " AGENT_ROLE
-    AGENT_ROLE=${AGENT_ROLE:-Customer service agent for resort guests}
+    read -p "Agent Role: " AGENT_ROLE
     
     # Auto-generate agent name from company name
     AGENT_NAME="${COMPANY_NAME} Customer Agent"
@@ -98,8 +126,7 @@ phase1_ideation() {
     AGENT_DESC="$COMPANY_DESC"
     
     # Tone
-    read -p "Tone (casual/professional/friendly) [casual]: " TONE
-    TONE=${TONE:-casual}
+    read -p "Tone (casual/professional/friendly): " TONE
     
     echo ""
     print_info "Using the following configuration:"
@@ -586,6 +613,9 @@ main() {
         # Check prerequisites
         check_cli
         
+        # Authenticate with Salesforce
+        authenticate_salesforce
+        
         echo ""
         print_info "Starting AgentforceDX ADLC implementation..."
         echo ""
@@ -609,19 +639,22 @@ main() {
         echo ""
         print_status "AgentforceDX ADLC implementation complete!"
     else
-        # Check prerequisites
-        check_cli
-        
-        echo ""
-        print_info "Starting AgentforceDX ADLC implementation..."
-        echo ""
-        
-        # Run all phases
-        phase1_ideation
-        phase2_development
-        phase3_testing
-        phase4_deployment
-        phase5_monitoring
+    # Check prerequisites
+    check_cli
+    
+    # Authenticate with Salesforce
+    authenticate_salesforce
+    
+    echo ""
+    print_info "Starting AgentforceDX ADLC implementation..."
+    echo ""
+    
+    # Run all phases
+    phase1_ideation
+    phase2_development
+    phase3_testing
+    phase4_deployment
+    phase5_monitoring
         
         echo ""
         echo "=== ADLC IMPLEMENTATION COMPLETE ==="
