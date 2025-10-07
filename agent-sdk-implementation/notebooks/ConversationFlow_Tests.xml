@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fullName>ConversationFlow_Tests</fullName>
+  <label>Conversationflow Tests</label>
+  <agentVersion>Coral Cloud Resort Resort Manager</agentVersion>
+  <testCases>
+    <name>TestCase_1_MultiTurnBooking</name>
+    <inputs>
+      <utterance>Can you help me with pricing for different room types?</utterance>
+      <conversationHistory>
+        <role>user</role>
+        <message>I want to book a room for next weekend</message>
+        <index>0</index>
+      </conversationHistory>
+      <conversationHistory>
+        <role>agent</role>
+        <message>I'd be happy to help you book a room. What type of room are you interested in?</message>
+        <topic>ReservationBooking</topic>
+        <index>1</index>
+      </conversationHistory>
+    </inputs>
+    <expectations>
+      <type>topicSequence</type>
+      <expectedTopic>PricingInquiry</expectedTopic>
+    </expectations>
+    <expectations>
+      <type>actionSequence</type>
+      <expectedAction>ProvidePricing</expectedAction>
+    </expectations>
+    <expectations>
+      <type>qualityMetric</type>
+      <qualityMetric>conciseness</qualityMetric>
+    </expectations>
+  </testCases>
+</AiEvaluationDefinition>

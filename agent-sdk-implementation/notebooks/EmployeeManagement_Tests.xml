@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fullName>EmployeeManagement_Tests</fullName>
+  <label>Employeemanagement Tests</label>
+  <agentVersion>Coral Cloud Resort Resort Manager</agentVersion>
+  <testCases>
+    <name>TestCase_1_ScheduleUpdate</name>
+    <inputs>
+      <utterance>Update Sarah's schedule to morning shift this week</utterance>
+      <contextVariables>
+        <name>UserRole</name>
+        <value>Manager</value>
+      </contextVariables>
+      <contextVariables>
+        <name>Department</name>
+        <value>FrontDesk</value>
+      </contextVariables>
+    </inputs>
+    <expectations>
+      <type>topicSequence</type>
+      <expectedTopic>EmployeeScheduling</expectedTopic>
+    </expectations>
+    <expectations>
+      <type>actionSequence</type>
+      <expectedAction>UpdateSchedule</expectedAction>
+    </expectations>
+    <expectations>
+      <type>stringMatch</type>
+      <expectedString>schedule updated</expectedString>
+    </expectations>
+  </testCases>
+</AiEvaluationDefinition>
