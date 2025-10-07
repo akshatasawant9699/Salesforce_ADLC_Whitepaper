@@ -95,9 +95,8 @@ phase1_ideation() {
     read -p "Agent Name [${COMPANY_NAME} Customer Agent]: " AGENT_NAME
     AGENT_NAME=${AGENT_NAME:-${COMPANY_NAME} Customer Agent}
     
-    # Agent Description
-    read -p "Agent Description [Professional customer service agent]: " AGENT_DESC
-    AGENT_DESC=${AGENT_DESC:-Professional customer service agent}
+    # Use company description as agent description
+    AGENT_DESC="$COMPANY_DESC"
     
     # Tone
     read -p "Tone (casual/professional/friendly) [casual]: " TONE
@@ -388,12 +387,18 @@ non_interactive_mode() {
     COMPANY_NAME="Coral Cloud Resorts"
     COMPANY_DESC="Luxury resort providing exceptional guest experiences"
     AGENT_ROLE="Customer service agent for resort guests"
+    AGENT_NAME="${COMPANY_NAME} Customer Agent"
+    AGENT_DESC="$COMPANY_DESC"
+    TONE="casual"
     
     print_info "Using the following default inputs:"
+    echo "  - Agent Name: $AGENT_NAME"
+    echo "  - Agent Description: $AGENT_DESC (same as company description)"
     echo "  - Type of agent: $AGENT_TYPE"
     echo "  - Company Name: $COMPANY_NAME"
     echo "  - Company Description: $COMPANY_DESC"
     echo "  - Agent Role: $AGENT_ROLE"
+    echo "  - Tone: $TONE"
     echo ""
     
     # Create specs directory if it doesn't exist
