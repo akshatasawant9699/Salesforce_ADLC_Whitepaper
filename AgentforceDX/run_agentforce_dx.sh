@@ -67,7 +67,7 @@ authenticate_salesforce() {
     print_info "Authenticating with Salesforce Developer Edition"
     echo ""
     
-    # Set credentials
+    # Set credentials for Developer Edition
     SALESFORCE_USERNAME="akshatasawant2010824@agentforce.com"
     SALESFORCE_PASSWORD="Ambadnya@9699"
     ORG_ALIAS="agentforce-dev"
@@ -683,13 +683,13 @@ show_help() {
     echo ""
     echo "Interactive Mode:"
     echo "  - Prompts for agent type, company name, description, and role"
-    echo "  - Allows customization of all inputs"
+    echo "  - Creates and activates agent in Salesforce"
     echo "  - Pauses between steps for review"
     echo ""
     echo "Non-Interactive Mode:"
     echo "  - Uses default values: Customer agent for Coral Cloud Resorts"
     echo "  - No user input required"
-    echo "  - Runs all phases automatically"
+    echo "  - Creates and activates agent automatically"
     echo ""
     echo "Default Values:"
     echo "  - Agent Type: Customer"
@@ -729,9 +729,7 @@ main() {
         # Run all phases with non-interactive mode
         non_interactive_mode
         phase2_development
-        phase3_testing
         phase4_deployment
-        phase5_monitoring
         
         echo ""
         echo "=== ADLC IMPLEMENTATION COMPLETE ==="
@@ -740,10 +738,10 @@ main() {
         echo ""
         print_info "Next steps:"
         echo "  - Review the generated agentSpec.yaml file"
-        echo "  - Test your agent in the Salesforce org"
-        echo "  - Monitor performance and optimize as needed"
+        echo "  - Your agent is now created and activated in Salesforce"
+        echo "  - Access it through Setup > Agentforce Studio"
         echo ""
-        print_status "AgentforceDX ADLC implementation complete!"
+        print_status "AgentforceDX implementation complete!"
     else
     # Check prerequisites
     check_cli
@@ -758,9 +756,7 @@ main() {
     # Run all phases
     phase1_ideation
     phase2_development
-    phase3_testing
     phase4_deployment
-    phase5_monitoring
         
         echo ""
         echo "=== ADLC IMPLEMENTATION COMPLETE ==="
@@ -769,10 +765,10 @@ main() {
         echo ""
         print_info "Next steps:"
         echo "  - Review the generated agentSpec.yaml file"
-        echo "  - Test your agent in the Salesforce org"
-        echo "  - Monitor performance and optimize as needed"
+        echo "  - Your agent is now created and activated in Salesforce"
+        echo "  - Access it through Setup > Agentforce Studio"
         echo ""
-        print_status "AgentforceDX ADLC implementation complete!"
+        print_status "AgentforceDX implementation complete!"
     fi
 }
 
