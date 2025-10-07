@@ -332,6 +332,20 @@ EOF
     
     wait_for_user
     
+    print_info "Pre-check: Verifying permission sets and org setup"
+    print_info "Checking if EinsteinServiceAgent permission set exists..."
+    sf data query --query "SELECT Id, Name FROM PermissionSet WHERE Name = 'EinsteinServiceAgent'" --target-org agentforce-dev
+    
+    if [ $? -eq 0 ]; then
+        print_status "Permission set check completed"
+        print_info "If you encounter permission errors, assign the EinsteinServiceAgent permission set to your user"
+        echo ""
+    else
+        print_info "Permission set check failed - this may cause agent creation issues"
+        print_info "Make sure EinsteinServiceAgent permission set exists in your org"
+        echo ""
+    fi
+    
     print_info "Running: sf agent create"
     echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
     
@@ -358,8 +372,27 @@ EOF
         fi
     else
         print_error "Failed to create agent"
-        print_info "Make sure you are authenticated with Salesforce CLI"
-        print_info "Run: sf org login web --alias agentforce-dev"
+        echo ""
+        print_info "Common issues and solutions:"
+        print_info "1. Permission Sets Error:"
+        print_info "   - Go to Setup > Users > Permission Sets"
+        print_info "   - Find 'EinsteinServiceAgent' permission set"
+        print_info "   - Assign it to your user if not already assigned"
+        print_info "   - Or assign it to the EinsteinServiceAgent user"
+        echo ""
+        print_info "2. Authentication Issues:"
+        print_info "   - Make sure you are authenticated with Salesforce CLI"
+        print_info "   - Run: sf org login web --alias agentforce-dev"
+        echo ""
+        print_info "3. Agent Name Conflicts:"
+        print_info "   - Try using a different company name"
+        print_info "   - The timestamp should prevent most conflicts"
+        echo ""
+        print_info "4. Topics Warning:"
+        print_info "   - This is normal and can be configured later"
+        print_info "   - Topics can be added in Agentforce Studio"
+        echo ""
+        print_info "For detailed troubleshooting, check Salesforce Setup > Agentforce Studio"
         return 1
     fi
 }
