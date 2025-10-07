@@ -1,0 +1,51 @@
+tools:
+- apex_class: ReservationSearchAction
+  description: Search for customer reservations by name or confirmation number
+  inputs:
+  - name: customerName
+    required: true
+    type: String
+  - name: confirmationNumber
+    required: false
+    type: String
+  name: ReservationFinder
+  outputs:
+  - name: reservations
+    type: List<Reservation>
+  - name: status
+    type: String
+  type: apex_action
+- apex_class: ScheduleUpdateAction
+  description: Update employee schedules and manage shifts
+  inputs:
+  - name: employeeId
+    required: true
+    type: String
+  - name: newShift
+    required: true
+    type: String
+  - name: date
+    required: true
+    type: Date
+  name: ScheduleManager
+  outputs:
+  - name: success
+    type: Boolean
+  - name: message
+    type: String
+  type: apex_action
+- description: Get weather information for activity recommendations
+  endpoint: https://api.weather.com/v1/current
+  inputs:
+  - name: location
+    required: true
+    type: String
+  name: WeatherService
+  outputs:
+  - name: temperature
+    type: Number
+  - name: conditions
+    type: String
+  - name: recommendations
+    type: List<String>
+  type: external_api

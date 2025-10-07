@@ -1,0 +1,48 @@
+{
+  "run_conversation_test": [
+    "sf",
+    "agents",
+    "test",
+    "conversation",
+    "--agent",
+    "Coral Cloud Resorts Resort Manager",
+    "--scenario",
+    "agent_outputs/phase3_testing/agentforce_test_scenarios.yaml",
+    "--org",
+    "agentforce-dev"
+  ],
+  "preview_conversation": [
+    "sf",
+    "agents",
+    "preview",
+    "--agent",
+    "Coral Cloud Resorts Resort Manager",
+    "--input",
+    "I need help with my reservation",
+    "--debug",
+    "true",
+    "--org",
+    "agentforce-dev"
+  ],
+  "validate_agent": [
+    "sf",
+    "agents",
+    "validate",
+    "--agent",
+    "Coral Cloud Resorts Resort Manager",
+    "--org",
+    "agentforce-dev"
+  ],
+  "run_performance_test": [
+    "sf",
+    "agents",
+    "test",
+    "performance",
+    "--agent",
+    "Coral Cloud Resorts Resort Manager",
+    "--duration",
+    "300",
+    "--org",
+    "agentforce-dev"
+  ]
+}
