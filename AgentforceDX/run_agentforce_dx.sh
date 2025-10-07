@@ -178,6 +178,12 @@ phase1_ideation() {
     
     # Create comprehensive agentSpec.yaml with all details
     cat > specs/agentSpec.yaml << EOF
+# Required top-level properties for AgentforceDX CLI
+agentType: $(echo "$AGENT_TYPE" | tr '[:upper:]' '[:lower:]')
+role: $AGENT_ROLE
+companyName: $COMPANY_NAME
+companyDescription: $COMPANY_DESC
+
 agent:
   company:
     description: $COMPANY_DESC
@@ -186,9 +192,6 @@ agent:
   persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
   role: $AGENT_ROLE
   type: $AGENT_TYPE
-  agentType: $AGENT_TYPE
-  companyName: $COMPANY_NAME
-  companyDescription: $COMPANY_DESC
 metadata:
   command: sf agent generate agent-spec
   created: '$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'
@@ -198,34 +201,6 @@ metadata:
 topics:
   - name: "Reservation Management"
     description: "Handle guest reservations, modifications, and cancellations"
-    examples:
-      - "I need to book a room for next weekend"
-      - "Can I change my reservation dates?"
-      - "I want to cancel my booking"
-  - name: "Guest Services"
-    description: "Provide information about resort amenities and services"
-    examples:
-      - "What activities are available at the resort?"
-      - "What time is the spa open?"
-      - "Do you have a gym?"
-  - name: "Customer Support"
-    description: "Address guest complaints and resolve issues"
-    examples:
-      - "My room is too noisy"
-      - "The WiFi is not working"
-      - "I have a billing question"
-  - name: "Activity Recommendations"
-    description: "Suggest activities and experiences for guests"
-    examples:
-      - "What can I do with my family?"
-      - "Do you have any water sports?"
-      - "What's the best restaurant?"
-  - name: "Emergency Assistance"
-    description: "Handle urgent situations and provide emergency support"
-    examples:
-      - "I need medical assistance"
-      - "There's a problem with my room"
-      - "I lost my room key"
 tools:
   - name: "ReservationSystem"
     description: "Access and manage guest reservations"
@@ -488,6 +463,12 @@ non_interactive_mode() {
     
     # Create comprehensive agentSpec.yaml with all details
     cat > specs/agentSpec.yaml << EOF
+# Required top-level properties for AgentforceDX CLI
+agentType: $(echo "$AGENT_TYPE" | tr '[:upper:]' '[:lower:]')
+role: $AGENT_ROLE
+companyName: $COMPANY_NAME
+companyDescription: $COMPANY_DESC
+
 agent:
   company:
     description: $COMPANY_DESC
@@ -496,9 +477,6 @@ agent:
   persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
   role: $AGENT_ROLE
   type: $AGENT_TYPE
-  agentType: $AGENT_TYPE
-  companyName: $COMPANY_NAME
-  companyDescription: $COMPANY_DESC
 metadata:
   command: sf agent generate agent-spec
   created: '$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'
@@ -508,34 +486,6 @@ metadata:
 topics:
   - name: "Reservation Management"
     description: "Handle guest reservations, modifications, and cancellations"
-    examples:
-      - "I need to book a room for next weekend"
-      - "Can I change my reservation dates?"
-      - "I want to cancel my booking"
-  - name: "Guest Services"
-    description: "Provide information about resort amenities and services"
-    examples:
-      - "What activities are available at the resort?"
-      - "What time is the spa open?"
-      - "Do you have a gym?"
-  - name: "Customer Support"
-    description: "Address guest complaints and resolve issues"
-    examples:
-      - "My room is too noisy"
-      - "The WiFi is not working"
-      - "I have a billing question"
-  - name: "Activity Recommendations"
-    description: "Suggest activities and experiences for guests"
-    examples:
-      - "What can I do with my family?"
-      - "Do you have any water sports?"
-      - "What's the best restaurant?"
-  - name: "Emergency Assistance"
-    description: "Handle urgent situations and provide emergency support"
-    examples:
-      - "I need medical assistance"
-      - "There's a problem with my room"
-      - "I lost my room key"
 tools:
   - name: "ReservationSystem"
     description: "Access and manage guest reservations"

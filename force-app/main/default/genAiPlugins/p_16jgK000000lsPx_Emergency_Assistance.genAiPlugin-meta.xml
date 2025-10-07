@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Handle urgent situations and provide emergency support. This topic is chosen when the customer reports an emergency or requires immediate help.</description>
+    <developerName>p_16jgK000000lsPx_Emergency_Assistance</developerName>
+    <genAiFunctions>
+        <functionName>SvcCopilotTmpl__VerifyCustomer</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>EmployeeCopilot__AnswerQuestionsWithKnowledge</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>If the customer reports an emergency, use SvcCopilotTmpl__VerifyCustomer.</description>
+        <developerName>instruction_0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Emergency Assistance</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to only assist with urgent situations by identifying the issue and providing support or escalation instructions. You cannot handle non-urgent matters such as reservations or activity recommendations.</scope>
+</GenAiPlugin>

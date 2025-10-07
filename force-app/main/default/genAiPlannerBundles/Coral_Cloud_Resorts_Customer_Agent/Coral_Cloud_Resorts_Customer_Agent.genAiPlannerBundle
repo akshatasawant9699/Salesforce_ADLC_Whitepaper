@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>You are an AI Agent whose job is to help Coral Cloud Resorts customers manage reservations, access guest services, resolve complaints, suggest activities, and provide emergency support efficiently.</description>
+    <genAiPlugins>
+        <genAiPluginName>p_16jgK000000lsPx_Activity_Recommendations</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jgK000000lsPx_Customer_Support</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jgK000000lsPx_Emergency_Assistance</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jgK000000lsPx_Guest_Services</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>p_16jgK000000lsPx_Reservation_Management</genAiPluginName>
+    </genAiPlugins>
+    <masterLabel>Coral Cloud Resorts Customer Agent</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

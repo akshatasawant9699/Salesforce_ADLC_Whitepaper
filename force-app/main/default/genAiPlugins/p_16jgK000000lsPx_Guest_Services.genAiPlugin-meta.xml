@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Provide customers with information about resort amenities and services. This topic is chosen when the customer inquires about facilities or offerings at the resort.</description>
+    <developerName>p_16jgK000000lsPx_Guest_Services</developerName>
+    <genAiFunctions>
+        <functionName>EmployeeCopilot__AnswerQuestionsWithKnowledge</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>If the customer asks about resort amenities, use EmployeeCopilot__AnswerQuestionsWithKnowledge.</description>
+        <developerName>instruction_0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Guest Services</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to only provide information about resort amenities, services, and offerings. You cannot handle complaints, reservations, or emergency support.</scope>
+</GenAiPlugin>

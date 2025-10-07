@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Address guest complaints and resolve issues. This topic is chosen when the customer reports a problem or dissatisfaction.</description>
+    <developerName>p_16jgK000000lsPx_Customer_Support</developerName>
+    <genAiFunctions>
+        <functionName>SvcCopilotTmpl__CreateCaseEnhancedData</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>SvcCopilotTmpl__AddCaseComment</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>EmployeeCopilot__AnswerQuestionsWithKnowledge</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>If the customer reports an issue, use SvcCopilotTmpl__CreateCaseEnhancedData.</description>
+        <developerName>instruction_0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the customer wants to add a comment to an existing case, use SvcCopilotTmpl__AddCaseComment.</description>
+        <developerName>instruction_1</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_1</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Customer Support</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to only assist with resolving customer complaints by creating cases or adding comments to existing cases. You cannot handle reservations or activity recommendations.</scope>
+</GenAiPlugin>
