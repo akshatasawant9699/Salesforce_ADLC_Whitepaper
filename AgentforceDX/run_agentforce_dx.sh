@@ -352,6 +352,7 @@ EOF
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
         print_info "Agent is now available in your Salesforce org"
+        print_info "Note: Permission set warnings are normal and don't affect agent functionality"
         echo ""
         
         # Ask if user wants to preview the agent
@@ -482,7 +483,7 @@ phase4_deployment() {
     wait_for_user
     
     print_info "Running: sf agent activate"
-    sf agent activate --name "$AGENT_NAME"
+    sf agent activate --api-name "$AGENT_API_NAME" --target-org agentforce-dev
     
     if [ $? -eq 0 ]; then
         print_status "Agent activated successfully"
