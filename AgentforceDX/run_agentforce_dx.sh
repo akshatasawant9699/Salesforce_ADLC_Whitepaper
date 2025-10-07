@@ -153,8 +153,9 @@ phase1_ideation() {
     # Agent Role
     read -p "Agent Role: " AGENT_ROLE
     
-    # Auto-generate agent name from company name
-    AGENT_NAME="${COMPANY_NAME} Customer Agent"
+    # Auto-generate agent name from company name with timestamp for uniqueness
+    TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+    AGENT_NAME="${COMPANY_NAME} Customer Agent ${TIMESTAMP}"
     
     # Auto-generate API name from agent name (replace spaces with underscores)
     AGENT_API_NAME=$(echo "$AGENT_NAME" | sed 's/ /_/g')
@@ -353,6 +354,24 @@ EOF
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
         print_info "Agent is now available in your Salesforce org"
+        echo ""
+        
+        # Ask if user wants to preview the agent
+        read -p "Do you want to preview the agent conversation? (y/n): " PREVIEW_AGENT_CHOICE
+        if [ "$PREVIEW_AGENT_CHOICE" = "y" ] || [ "$PREVIEW_AGENT_CHOICE" = "Y" ]; then
+            print_info "Starting agent preview..."
+            print_info "Note: This requires additional setup (client-app, target-org)"
+            print_info "For manual preview, use: sf agent preview --api-name $AGENT_API_NAME --target-org agentforce-dev --client-app <app-name>"
+            echo ""
+            print_status "Agent preview setup required"
+            print_info "To enable preview, you need to:"
+            print_info "1. Create a linked client app with 'org login web --client-app'"
+            print_info "2. Set up the target org properly"
+            print_info "3. Run: sf agent preview --api-name $AGENT_API_NAME --target-org agentforce-dev --client-app <app-name>"
+        else
+            print_info "Skipping agent preview"
+            print_info "You can preview later using the command above"
+        fi
     else
         print_error "Failed to create agent"
         print_info "Make sure you are authenticated with Salesforce CLI"
@@ -488,7 +507,10 @@ non_interactive_mode() {
     COMPANY_NAME="Coral Cloud Resorts"
     COMPANY_DESC="Luxury resort providing exceptional guest experiences"
     AGENT_ROLE="Customer service agent for resort guests"
-    AGENT_NAME="${COMPANY_NAME} Customer Agent"
+    
+    # Auto-generate agent name with timestamp for uniqueness
+    TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+    AGENT_NAME="${COMPANY_NAME} Customer Agent ${TIMESTAMP}"
     AGENT_API_NAME=$(echo "$AGENT_NAME" | sed 's/ /_/g')
     AGENT_DESC="$COMPANY_DESC"
     TONE="casual"
