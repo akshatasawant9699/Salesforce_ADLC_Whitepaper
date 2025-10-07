@@ -77,19 +77,53 @@ authenticate_salesforce() {
     print_info "Org Alias: $ORG_ALIAS"
     echo ""
     
-    # Login to Salesforce
+    # Check if already authenticated
+    if sf org list | grep -q "$ORG_ALIAS"; then
+        print_status "Already authenticated with $ORG_ALIAS"
+        sf org display --target-org $ORG_ALIAS
+        return 0
+    fi
+    
+    # Login to Salesforce using web authentication
     print_info "Logging into Salesforce..."
+    echo "Please complete the web authentication in your browser..."
     sf org login web --alias $ORG_ALIAS --instance-url https://login.salesforce.com --set-default
     
     if [ $? -eq 0 ]; then
         print_status "Successfully authenticated with Salesforce"
         print_info "Org alias: $ORG_ALIAS"
         print_info "Instance URL: https://login.salesforce.com"
+        
+        # Display org info
+        sf org display --target-org $ORG_ALIAS
     else
         print_error "Failed to authenticate with Salesforce"
         print_info "Please check your credentials and try again"
+        print_info "You can also run: sf org login web --alias $ORG_ALIAS"
         return 1
     fi
+}
+
+# Verify authentication before running agent commands
+verify_authentication() {
+    print_info "Verifying Salesforce authentication..."
+    
+    # Check if we have an authenticated org
+    if ! sf org list | grep -q "agentforce-dev"; then
+        print_error "Not authenticated with Salesforce"
+        print_info "Please run: sf org login web --alias agentforce-dev"
+        return 1
+    fi
+    
+    # Check if org is accessible
+    if ! sf org display --target-org agentforce-dev &> /dev/null; then
+        print_error "Cannot access authenticated org"
+        print_info "Please re-authenticate: sf org login web --alias agentforce-dev"
+        return 1
+    fi
+    
+    print_status "Authentication verified"
+    return 0
 }
 
 # Phase 1: Ideation & Design
@@ -306,6 +340,12 @@ EOF
         print_status "Salesforce DX project structure created"
     fi
     
+    # Verify authentication before creating agent
+    if ! verify_authentication; then
+        print_error "Authentication failed. Cannot create agent."
+        return 1
+    fi
+    
     print_info "Command: sf agent create"
     print_info "This will create the agent in your Salesforce org"
     echo ""
@@ -313,7 +353,7 @@ EOF
     wait_for_user
     
     print_info "Running: sf agent create"
-    sf agent create --spec specs/agentSpec.yaml --org default
+    sf agent create --spec specs/agentSpec.yaml --org agentforce-dev
     
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
@@ -321,7 +361,7 @@ EOF
     else
         print_error "Failed to create agent"
         print_info "Make sure you are authenticated with Salesforce CLI"
-        print_info "Run: sf org login web"
+        print_info "Run: sf org login web --alias agentforce-dev"
         return 1
     fi
 }
@@ -340,7 +380,7 @@ phase3_testing() {
     wait_for_user
     
     print_info "Running: sf agent preview"
-    sf agent preview --agent "Coral Cloud Resorts Customer Agent" --org default
+    sf agent preview --agent "Coral Cloud Resorts Customer Agent" --org agentforce-dev
     
     if [ $? -eq 0 ]; then
         print_status "Agent preview completed"
@@ -365,7 +405,7 @@ phase4_deployment() {
     wait_for_user
     
     print_info "Running: sf agent deploy"
-    sf agent deploy --agent "Coral Cloud Resorts Customer Agent" --org default
+    sf agent deploy --agent "Coral Cloud Resorts Customer Agent" --org agentforce-dev
     
     if [ $? -eq 0 ]; then
         print_status "Agent deployed successfully"
@@ -390,7 +430,7 @@ phase5_monitoring() {
     wait_for_user
     
     print_info "Running: sf agent monitor"
-    sf agent monitor --agent "Coral Cloud Resorts Customer Agent" --org default
+    sf agent monitor --agent "Coral Cloud Resorts Customer Agent" --org agentforce-dev
     
     if [ $? -eq 0 ]; then
         print_status "Agent monitoring completed"
