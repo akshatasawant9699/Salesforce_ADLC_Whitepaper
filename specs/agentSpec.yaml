@@ -11,7 +11,7 @@ agent:
   companyDescription: Luxury resort providing exceptional guest experiences
 metadata:
   command: sf agent generate agent-spec
-  created: '2025-10-07T11:50:00.000Z'
+  created: '2025-10-07T11:44:38.3NZ'
   framework: AgentforceDX
   generated_by: AgentforceDX CLI
   version: '1.0'

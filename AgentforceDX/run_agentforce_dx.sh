@@ -67,17 +67,51 @@ phase1_ideation() {
     print_info "Creating comprehensive agent specification with all necessary details"
     echo ""
     
-    # Set default values
-    AGENT_TYPE="Customer"
-    COMPANY_NAME="Coral Cloud Resorts"
-    COMPANY_DESC="Luxury resort providing exceptional guest experiences"
-    AGENT_ROLE="Customer service agent for resort guests"
+    # Reference the Agent Python SDK agent_spec.json structure
+    print_info "Referencing Agent Python SDK agent_spec.json for specification structure"
+    echo ""
     
+    # Prompt for specific details as mentioned in the requirements
+    echo "Please provide the following details for your agent:"
+    echo ""
+    
+    # Type of agent
+    read -p "Type of agent (Customer/Employee/Partner/External) [Customer]: " AGENT_TYPE
+    AGENT_TYPE=${AGENT_TYPE:-Customer}
+    
+    # Company Name
+    read -p "Company Name [Coral Cloud Resorts]: " COMPANY_NAME
+    COMPANY_NAME=${COMPANY_NAME:-Coral Cloud Resorts}
+    
+    # Company Description
+    read -p "Company Description [Luxury resort providing exceptional guest experiences]: " COMPANY_DESC
+    COMPANY_DESC=${COMPANY_DESC:-Luxury resort providing exceptional guest experiences}
+    
+    # Agent Role
+    read -p "Agent Role [Customer service agent for resort guests]: " AGENT_ROLE
+    AGENT_ROLE=${AGENT_ROLE:-Customer service agent for resort guests}
+    
+    # Agent Name
+    read -p "Agent Name [${COMPANY_NAME} Customer Agent]: " AGENT_NAME
+    AGENT_NAME=${AGENT_NAME:-${COMPANY_NAME} Customer Agent}
+    
+    # Agent Description
+    read -p "Agent Description [Professional customer service agent]: " AGENT_DESC
+    AGENT_DESC=${AGENT_DESC:-Professional customer service agent}
+    
+    # Tone
+    read -p "Tone (casual/professional/friendly) [casual]: " TONE
+    TONE=${TONE:-casual}
+    
+    echo ""
     print_info "Using the following configuration:"
+    echo "  - Agent Name: $AGENT_NAME"
+    echo "  - Agent Description: $AGENT_DESC"
     echo "  - Type of agent: $AGENT_TYPE"
     echo "  - Company Name: $COMPANY_NAME"
     echo "  - Company Description: $COMPANY_DESC"
     echo "  - Agent Role: $AGENT_ROLE"
+    echo "  - Tone: $TONE"
     echo ""
     
     # Create specs directory if it doesn't exist

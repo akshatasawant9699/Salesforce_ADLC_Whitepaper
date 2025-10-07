@@ -1,0 +1,159 @@
+{
+  "agent": {
+    "name": "Coral Cloud Resorts Customer Agent",
+    "type": "Customer",
+    "persona": "Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences",
+    "role": "Customer service agent for resort guests",
+    "company": {
+      "name": "Coral Cloud Resorts",
+      "description": "Luxury resort providing exceptional guest experiences"
+    }
+  },
+  "topics": [
+    {
+      "name": "Reservation Management",
+      "description": "Handle guest reservations, modifications, and cancellations",
+      "examples": [
+        "I need to book a room for next weekend",
+        "Can I change my reservation dates?",
+        "I want to cancel my booking"
+      ]
+    },
+    {
+      "name": "Guest Services",
+      "description": "Provide information about resort amenities and services",
+      "examples": [
+        "What activities are available at the resort?",
+        "What time is the spa open?",
+        "Do you have a gym?"
+      ]
+    },
+    {
+      "name": "Customer Support",
+      "description": "Address guest complaints and resolve issues",
+      "examples": [
+        "My room is too noisy",
+        "The WiFi is not working",
+        "I have a billing question"
+      ]
+    },
+    {
+      "name": "Activity Recommendations",
+      "description": "Suggest activities and experiences for guests",
+      "examples": [
+        "What can I do with my family?",
+        "Do you have any water sports?",
+        "What's the best restaurant?"
+      ]
+    },
+    {
+      "name": "Emergency Assistance",
+      "description": "Handle urgent situations and provide emergency support",
+      "examples": [
+        "I need medical assistance",
+        "There's a problem with my room",
+        "I lost my room key"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "ReservationSystem",
+      "description": "Access and manage guest reservations",
+      "type": "API",
+      "endpoint": "/api/reservations"
+    },
+    {
+      "name": "GuestServices",
+      "description": "Provide information about resort services",
+      "type": "KnowledgeBase",
+      "source": "resort_services_kb"
+    },
+    {
+      "name": "CustomerSupport",
+      "description": "Handle guest complaints and issues",
+      "type": "Workflow",
+      "process": "complaint_resolution"
+    },
+    {
+      "name": "ActivityPlanner",
+      "description": "Recommend and book activities for guests",
+      "type": "API",
+      "endpoint": "/api/activities"
+    },
+    {
+      "name": "EmergencyResponse",
+      "description": "Handle urgent situations and emergencies",
+      "type": "Workflow",
+      "process": "emergency_protocol"
+    }
+  ],
+  "knowledge_bases": [
+    {
+      "name": "Resort Policies",
+      "description": "Information about resort policies and procedures",
+      "source": "policies_kb"
+    },
+    {
+      "name": "Local Attractions",
+      "description": "Information about nearby attractions and activities",
+      "source": "attractions_kb"
+    },
+    {
+      "name": "Dining Options",
+      "description": "Information about restaurants and dining options",
+      "source": "dining_kb"
+    },
+    {
+      "name": "Amenities Guide",
+      "description": "Information about resort amenities and facilities",
+      "source": "amenities_kb"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "Reservation Process",
+      "description": "Complete workflow for handling reservations",
+      "steps": [
+        "Validate guest information",
+        "Check room availability",
+        "Process payment",
+        "Send confirmation"
+      ]
+    },
+    {
+      "name": "Complaint Resolution",
+      "description": "Process for handling guest complaints",
+      "steps": [
+        "Listen to guest concern",
+        "Assess the situation",
+        "Propose solution",
+        "Follow up on resolution"
+      ]
+    },
+    {
+      "name": "Activity Booking",
+      "description": "Process for booking activities and experiences",
+      "steps": [
+        "Understand guest preferences",
+        "Check availability",
+        "Provide recommendations",
+        "Process booking"
+      ]
+    }
+  ],
+  "settings": {
+    "language": "en-US",
+    "timezone": "UTC",
+    "response_timeout": 30,
+    "max_conversation_turns": 10,
+    "escalation_threshold": 3
+  },
+  "metadata": {
+    "command": "sf agent generate agent-spec",
+    "created": "2025-10-07T12:00:00.000Z",
+    "framework": "AgentforceDX",
+    "generated_by": "AgentforceDX CLI",
+    "version": "1.0"
+  }
+}
