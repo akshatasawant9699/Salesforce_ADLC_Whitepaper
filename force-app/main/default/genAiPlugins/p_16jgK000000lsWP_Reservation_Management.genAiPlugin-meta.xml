@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Handle customer requests related to managing their reservations, including creating, modifying, or canceling bookings.</description>
+    <developerName>p_16jgK000000lsWP_Reservation_Management</developerName>
+    <genAiFunctions>
+        <functionName>SvcCopilotTmpl__FinalizeReservation</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>SvcCopilotTmpl__GetReservationTimeSlots</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>EmployeeCopilot__AnswerQuestionsWithKnowledge</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>If the query is about booking a new reservation, use SvcCopilotTmpl__FinalizeReservation.</description>
+        <developerName>instruction_0</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the query is about checking available time slots, use SvcCopilotTmpl__GetReservationTimeSlots.</description>
+        <developerName>instruction_1</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_1</masterLabel>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the query is about modifying or canceling an existing reservation, confirm the relevant details and proceed accordingly.</description>
+        <developerName>instruction_2</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_2</masterLabel>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <masterLabel>Reservation Management</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to only assist with tasks related to managing guest reservations, including booking new reservations, modifying existing ones, or canceling reservations. You are not able to assist with non-reservation-related inquiries.</scope>
+</GenAiPlugin>

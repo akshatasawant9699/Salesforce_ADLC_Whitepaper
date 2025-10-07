@@ -330,26 +330,10 @@ EOF
     print_info "This will create the agent in your Salesforce org"
     echo ""
     
-    # Ask if user wants to preview first
-    read -p "Do you want to preview the agent structure before creating? (y/n): " PREVIEW_CHOICE
-    if [ "$PREVIEW_CHOICE" = "y" ] || [ "$PREVIEW_CHOICE" = "Y" ]; then
-        print_info "Running: sf agent create --preview"
-        echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME" --preview
-        
-        if [ $? -eq 0 ]; then
-            print_status "Agent preview completed"
-            print_info "Preview JSON file generated locally"
-            echo ""
-        else
-            print_error "Failed to preview agent"
-            return 1
-        fi
-    fi
-    
     wait_for_user
     
-        print_info "Running: sf agent create"
-        echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
+    print_info "Running: sf agent create"
+    echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
@@ -393,16 +377,31 @@ phase3_testing() {
     
     wait_for_user
     
-    print_info "Step 1: Generate test spec for the agent"
-    print_info "Running: sf agent generate test-spec"
-    sf agent generate test-spec --agent "$AGENT_NAME" --output-dir specs/
+    print_info "Step 1: Check if agent exists and is accessible"
+    print_info "Running: sf data query to verify agent"
+    sf data query --query "SELECT Id, Name FROM BotDefinition WHERE Name = '$AGENT_NAME'" --target-org agentforce-dev
+    
+    if [ $? -eq 0 ]; then
+        print_status "Agent found, proceeding with test generation"
+        echo ""
+        
+        print_info "Step 2: Generate test spec for the agent"
+        print_info "Running: sf agent generate test-spec"
+        print_info "Note: This command may require the agent to be activated first"
+        sf agent generate test-spec --agent "$AGENT_NAME" --output-dir specs/
+    else
+        print_error "Agent not found or not accessible"
+        print_info "Make sure the agent was created successfully"
+        print_info "You can check agent status in Salesforce Setup > Agentforce Studio"
+        return 1
+    fi
     
     if [ $? -eq 0 ]; then
         print_status "Test spec generated successfully"
         print_info "Test spec file created in specs/ directory"
         echo ""
         
-        print_info "Step 2: Create agent test in Salesforce org"
+        print_info "Step 3: Create agent test in Salesforce org"
         print_info "Running: sf agent test create"
         sf agent test create --spec specs/testSpec.yaml --agent "$AGENT_NAME"
         
@@ -411,7 +410,7 @@ phase3_testing() {
             print_info "Test metadata synced to your DX project"
             echo ""
             
-            print_info "Step 3: Run agent tests"
+            print_info "Step 4: Run agent tests"
             print_info "Running: sf agent test run"
             sf agent test run --agent "$AGENT_NAME"
             
@@ -478,7 +477,7 @@ phase5_monitoring() {
     sf org display --target-org agentforce-dev
     
     print_info "Running: sf data query (checking agent status)"
-    sf data query --query "SELECT Id, Name, Status FROM Bot WHERE Name = '$AGENT_NAME'" --target-org agentforce-dev
+    sf data query --query "SELECT Id, Name, Status FROM BotDefinition WHERE Name = '$AGENT_NAME'" --target-org agentforce-dev
     
     print_info "Monitoring setup complete"
     print_info "You can monitor your agent through:"
