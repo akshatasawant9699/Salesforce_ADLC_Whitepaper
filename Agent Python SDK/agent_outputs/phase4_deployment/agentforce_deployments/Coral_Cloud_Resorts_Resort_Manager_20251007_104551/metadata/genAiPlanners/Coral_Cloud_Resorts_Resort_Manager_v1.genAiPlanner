@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlanner xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>The resort manager fields customer complaints, manages employee schedules, and generally makes ensures that all processes are running  everything is working smoothly. for Coral Cloud Resorts</description>
+    <genAiPlugins>
+        <genAiPluginName>Customer_Complaint_Resolution</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>Employee_Schedule_Management</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>Reservation_Assistance</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>Activity_Recommendations</genAiPluginName>
+    </genAiPlugins>
+    <genAiPlugins>
+        <genAiPluginName>Service_Quality_Monitoring</genAiPluginName>
+    </genAiPlugins>
+    <masterLabel>Coral Cloud Resorts Resort Manager</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlanner>

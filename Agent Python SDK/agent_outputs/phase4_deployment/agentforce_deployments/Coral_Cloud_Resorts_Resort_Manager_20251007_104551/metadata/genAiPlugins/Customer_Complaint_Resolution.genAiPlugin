@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Handle and resolve customer complaints efficiently, providing timely solutions and ensuring guest satisfaction.</description>
+    <developerName>Customer_Complaint_Resolution</developerName>
+    <language>en_US</language>
+    <masterLabel>Customer Complaint Resolution</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>public</scope>
+</GenAiPlugin>

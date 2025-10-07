@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fullName>CustomerService_Tests</fullName>
+  <label>Customerservice Tests</label>
+  <agentVersion>Coral Cloud Resorts Resort Manager</agentVersion>
+  <testCases>
+    <name>TestCase_1_ComplaintHandling</name>
+    <inputs>
+      <utterance>I have a complaint about the noise in my room</utterance>
+      <contextVariables>
+        <name>GuestStatus</name>
+        <value>VIP</value>
+      </contextVariables>
+      <contextVariables>
+        <name>RoomNumber</name>
+        <value>303</value>
+      </contextVariables>
+    </inputs>
+    <expectations>
+      <type>topicSequence</type>
+      <expectedTopic>CustomerComplaint</expectedTopic>
+    </expectations>
+    <expectations>
+      <type>actionSequence</type>
+      <expectedAction>HandleComplaint</expectedAction>
+    </expectations>
+    <expectations>
+      <type>stringMatch</type>
+      <expectedString>apologize</expectedString>
+    </expectations>
+    <expectations>
+      <type>qualityMetric</type>
+      <qualityMetric>empathy</qualityMetric>
+    </expectations>
+  </testCases>
+  <testCases>
+    <name>TestCase_2_ActivityRecommendation</name>
+    <inputs>
+      <utterance>What activities do you recommend for families with kids?</utterance>
+    </inputs>
+    <expectations>
+      <type>topicSequence</type>
+      <expectedTopic>ActivityRecommendation</expectedTopic>
+    </expectations>
+    <expectations>
+      <type>actionSequence</type>
+      <expectedAction>RecommendActivities</expectedAction>
+    </expectations>
+    <expectations>
+      <type>stringMatch</type>
+      <expectedString>family</expectedString>
+    </expectations>
+    <expectations>
+      <type>qualityMetric</type>
+      <qualityMetric>relevance</qualityMetric>
+    </expectations>
+  </testCases>
+</AiEvaluationDefinition>

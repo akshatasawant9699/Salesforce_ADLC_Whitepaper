@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Track and ensure high quality of customer service across all resort operations and touchpoints.</description>
+    <developerName>Service_Quality_Monitoring</developerName>
+    <language>en_US</language>
+    <masterLabel>Service Quality Monitoring</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>public</scope>
+</GenAiPlugin>

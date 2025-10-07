@@ -2,7 +2,7 @@
 <AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
   <fullName>EmployeeManagement_Tests</fullName>
   <label>Employeemanagement Tests</label>
-  <agentVersion>Resort Manager Agent</agentVersion>
+  <agentVersion>Coral Cloud Resorts Resort Manager</agentVersion>
   <testCases>
     <name>TestCase_1_ScheduleUpdate</name>
     <inputs>
@@ -18,11 +18,11 @@
     </inputs>
     <expectations>
       <type>topicSequence</type>
-      <expectedTopic>EmployeeManagement</expectedTopic>
+      <expectedTopic>EmployeeScheduling</expectedTopic>
     </expectations>
     <expectations>
       <type>actionSequence</type>
-      <expectedAction>update_schedules</expectedAction>
+      <expectedAction>UpdateSchedule</expectedAction>
     </expectations>
     <expectations>
       <type>stringMatch</type>

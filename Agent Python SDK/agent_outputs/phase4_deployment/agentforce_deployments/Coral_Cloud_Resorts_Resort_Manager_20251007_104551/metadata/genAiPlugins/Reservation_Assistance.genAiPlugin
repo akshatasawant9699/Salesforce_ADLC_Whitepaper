@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Support customers with booking and reservation needs, including modifications, cancellations, and special requests.</description>
+    <developerName>Reservation_Assistance</developerName>
+    <language>en_US</language>
+    <masterLabel>Reservation Assistance</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>public</scope>
+</GenAiPlugin>
