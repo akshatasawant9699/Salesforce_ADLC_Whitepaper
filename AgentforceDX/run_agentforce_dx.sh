@@ -348,8 +348,13 @@ EOF
     
     print_info "Running: sf agent create"
     echo "$AGENT_API_NAME" | sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
+    CREATE_EXIT_CODE=$?
     
-    if [ $? -eq 0 ]; then
+    # Check if agent was actually created by querying the org
+    print_info "Verifying agent creation..."
+    AGENT_EXISTS=$(sf data query --query "SELECT Id FROM BotDefinition WHERE DeveloperName = '$AGENT_API_NAME'" --target-org agentforce-dev 2>/dev/null | grep -c "Total number of records retrieved: 1")
+    
+    if [ "$AGENT_EXISTS" -eq 1 ]; then
         print_status "Agent created successfully"
         print_info "Agent is now available in your Salesforce org"
         print_info "Note: Permission set warnings are normal and don't affect agent functionality"
@@ -372,10 +377,14 @@ EOF
             print_info "You can preview later using the command above"
         fi
     else
-        print_error "Failed to create agent"
+        print_error "Agent creation failed or agent not found in org"
+        echo ""
+        print_info "Exit code: $CREATE_EXIT_CODE"
+        print_info "Agent verification failed - agent '$AGENT_API_NAME' not found"
         echo ""
         print_info "Common issues and solutions:"
-        print_info "1. Permission Sets Error:"
+        print_info "1. Permission Sets Error (Most Common):"
+        print_info "   - This is a known issue in Developer Edition"
         print_info "   - Go to Setup > Users > Permission Sets"
         print_info "   - Find 'EinsteinServiceAgent' permission set"
         print_info "   - Assign it to your user if not already assigned"
