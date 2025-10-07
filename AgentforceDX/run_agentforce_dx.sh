@@ -406,21 +406,14 @@ phase4_deployment() {
     
     wait_for_user
     
-    print_info "Running: sf agent deploy"
-    print_info "Note: Deploy command may require additional setup"
-    print_info "For now, we'll skip deployment and proceed to monitoring"
-    echo ""
-    print_status "Skipping deployment (requires additional configuration)"
-    print_info "To enable deployment, you need to:"
-    print_info "1. Set up proper target org configuration"
-    print_info "2. Ensure agent is properly configured"
-    print_info "3. Use: sf agent deploy --name $AGENT_NAME --target-org agentforce-dev"
+    print_info "Running: sf agent activate"
+    sf agent activate --name "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
-        print_status "Agent deployed successfully"
-        print_info "Agent is now live in your production org"
+        print_status "Agent activated successfully"
+        print_info "Agent is now live and ready for use"
     else
-        print_error "Failed to deploy agent"
+        print_error "Failed to activate agent"
         return 1
     fi
 }
@@ -438,15 +431,17 @@ phase5_monitoring() {
     
     wait_for_user
     
-    print_info "Running: sf agent monitor"
-    print_info "Note: Monitor command may require additional setup"
-    print_info "For now, we'll skip monitoring and complete the ADLC"
-    echo ""
-    print_status "Skipping monitoring (requires additional configuration)"
-    print_info "To enable monitoring, you need to:"
-    print_info "1. Set up proper target org configuration"
-    print_info "2. Ensure agent is properly configured"
-    print_info "3. Use: sf agent monitor --name $AGENT_NAME --target-org agentforce-dev"
+    print_info "Running: sf org display (checking org status)"
+    sf org display --target-org agentforce-dev
+    
+    print_info "Running: sf data query (checking agent status)"
+    sf data query --query "SELECT Id, Name, Status FROM Bot WHERE Name = '$AGENT_NAME'" --target-org agentforce-dev
+    
+    print_info "Monitoring setup complete"
+    print_info "You can monitor your agent through:"
+    print_info "1. Salesforce Setup > Agentforce Studio"
+    print_info "2. Agent Builder UI for performance metrics"
+    print_info "3. Salesforce Analytics for detailed insights"
     
     if [ $? -eq 0 ]; then
         print_status "Agent monitoring completed"
