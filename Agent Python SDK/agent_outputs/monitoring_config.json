@@ -1,0 +1,17 @@
+{
+  "agent_name": "Coral CLoud AK Resort Manager",
+  "monitoring_metrics": [
+    "response_time_ms",
+    "success_rate",
+    "user_satisfaction",
+    "cost_usd"
+  ],
+  "alert_thresholds": {
+    "response_time_ms": 2000,
+    "success_rate": 0.95,
+    "user_satisfaction": 4.0,
+    "cost_usd": 0.08
+  },
+  "refresh_interval": "1 hour",
+  "data_retention": "90 days"
+}

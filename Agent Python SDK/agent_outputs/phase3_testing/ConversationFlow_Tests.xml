@@ -2,7 +2,7 @@
 <AiEvaluationDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
   <fullName>ConversationFlow_Tests</fullName>
   <label>Conversationflow Tests</label>
-  <agentVersion>Coral Cloud Resorts Resort Manager</agentVersion>
+  <agentVersion>Coral CLoud AK Resort Manager</agentVersion>
   <testCases>
     <name>TestCase_1_MultiTurnBooking</name>
     <inputs>
