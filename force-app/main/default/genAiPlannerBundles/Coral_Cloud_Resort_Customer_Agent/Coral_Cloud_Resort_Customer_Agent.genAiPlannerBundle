@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>You are an AI Agent whose job is to help manage guest reservations, modifications, and cancellations at Coral Cloud Resort.</description>
+    <genAiPlugins>
+        <genAiPluginName>p_16jgK000000lsRZ_Reservation_Management</genAiPluginName>
+    </genAiPlugins>
+    <masterLabel>Coral Cloud Resort Customer Agent</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>
