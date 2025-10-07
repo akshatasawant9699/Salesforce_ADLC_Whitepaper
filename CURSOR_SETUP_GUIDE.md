@@ -33,16 +33,24 @@ sf org list
 ### Steps:
 1. **Open Cursor/VS Code** in your project directory
 2. **Open Integrated Terminal**: `Ctrl+`` (backtick) or `View → Terminal`
-3. **Run the script**:
+3. **Run the script** (choose one option):
+
+   **Option A: Interactive Mode (with prompts)**
    ```bash
    ./AgentforceDX/run_agentforce_dx.sh
    ```
 
+   **Option B: Non-Interactive Mode (with defaults)**
+   ```bash
+   ./AgentforceDX/run_agentforce_dx.sh --non-interactive
+   ```
+
 ### What it does:
+- **Interactive Mode**: Prompts for user input with defaults
+- **Non-Interactive Mode**: Uses default values automatically
 - Runs all 5 ADLC phases sequentially
-- Interactive prompts (like a notebook)
 - Colored output and status messages
-- Pauses between steps for review
+- Pauses between steps for review (interactive mode)
 - Error handling and validation
 
 ### Example Output:
@@ -74,6 +82,7 @@ Press Enter to continue to the next step...
    - `AgentforceDX: Deploy Agent`
    - `AgentforceDX: Monitor Agent`
    - `AgentforceDX: Complete ADLC Script`
+   - `AgentforceDX: Complete ADLC Script (Non-Interactive)`
 
 ### Available Tasks:
 - **Individual Commands**: Run specific phases as needed

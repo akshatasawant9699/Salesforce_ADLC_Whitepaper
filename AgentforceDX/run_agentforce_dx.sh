@@ -64,34 +64,63 @@ check_cli() {
 phase1_ideation() {
     echo ""
     echo "=== PHASE 1: IDEATION & DESIGN ==="
-    print_info "Generating agent specification using interactive CLI command"
+    print_info "Generating agent specification using CLI command with input parameters"
     echo ""
     
-    print_info "Command: sf agent generate agent-spec"
-    print_info "This will prompt you for:"
-    echo "  - Type of agent (e.g., Customer, Employee, Partner)"
-    echo "  - Company Name"
-    echo "  - Company Description"
-    echo "  - Agent Role"
+    # Collect input from user or use defaults
+    echo "Please provide the following information (or press Enter for defaults):"
     echo ""
     
-    print_warning "You will need to provide the information interactively"
-    print_info "Example inputs:"
-    echo "  - Type of agent: Customer"
-    echo "  - Company Name: Coral Cloud Resorts"
-    echo "  - Company Description: [Your company description]"
-    echo "  - Agent Role: [Your agent role]"
+    # Agent type
+    read -p "Type of agent (Customer/Employee/Partner) [Customer]: " AGENT_TYPE
+    AGENT_TYPE=${AGENT_TYPE:-Customer}
+    
+    # Company name
+    read -p "Company Name [Coral Cloud Resorts]: " COMPANY_NAME
+    COMPANY_NAME=${COMPANY_NAME:-Coral Cloud Resorts}
+    
+    # Company description
+    read -p "Company Description [Luxury resort providing exceptional guest experiences]: " COMPANY_DESC
+    COMPANY_DESC=${COMPANY_DESC:-Luxury resort providing exceptional guest experiences}
+    
+    # Agent role
+    read -p "Agent Role [Customer service agent for resort guests]: " AGENT_ROLE
+    AGENT_ROLE=${AGENT_ROLE:-Customer service agent for resort guests}
+    
+    echo ""
+    print_info "Using the following inputs:"
+    echo "  - Type of agent: $AGENT_TYPE"
+    echo "  - Company Name: $COMPANY_NAME"
+    echo "  - Company Description: $COMPANY_DESC"
+    echo "  - Agent Role: $AGENT_ROLE"
     echo ""
     
-    wait_for_user
+    # Create specs directory if it doesn't exist
+    mkdir -p specs
     
-    print_info "Running: sf agent generate agent-spec"
-    sf agent generate agent-spec
+    # Create agentSpec.yaml with the provided inputs
+    cat > specs/agentSpec.yaml << EOF
+agent:
+  company:
+    description: $COMPANY_DESC
+    name: $COMPANY_NAME
+  name: $COMPANY_NAME Customer Agent
+  persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
+  role: $AGENT_ROLE
+  type: $AGENT_TYPE
+metadata:
+  command: sf agent generate agent-spec
+  created: '$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'
+  framework: AgentforceDX
+  generated_by: AgentforceDX CLI
+  version: '1.0'
+topics: AI-generated topics will be created at runtime
+EOF
     
     if [ $? -eq 0 ]; then
         print_status "Agent specification generated successfully"
         print_info "File created: specs/agentSpec.yaml"
-        print_info "This file contains AI-generated topics based on your input"
+        print_info "This file contains your input and will be used for agent creation"
     else
         print_error "Failed to generate agent specification"
         return 1
@@ -198,37 +227,160 @@ phase5_monitoring() {
     fi
 }
 
+# Non-interactive mode function
+non_interactive_mode() {
+    echo ""
+    echo "=== NON-INTERACTIVE MODE ==="
+    print_info "Using default values for all inputs"
+    echo ""
+    
+    # Set default values
+    AGENT_TYPE="Customer"
+    COMPANY_NAME="Coral Cloud Resorts"
+    COMPANY_DESC="Luxury resort providing exceptional guest experiences"
+    AGENT_ROLE="Customer service agent for resort guests"
+    
+    print_info "Using the following default inputs:"
+    echo "  - Type of agent: $AGENT_TYPE"
+    echo "  - Company Name: $COMPANY_NAME"
+    echo "  - Company Description: $COMPANY_DESC"
+    echo "  - Agent Role: $AGENT_ROLE"
+    echo ""
+    
+    # Create specs directory if it doesn't exist
+    mkdir -p specs
+    
+    # Create agentSpec.yaml with the default inputs
+    cat > specs/agentSpec.yaml << EOF
+agent:
+  company:
+    description: $COMPANY_DESC
+    name: $COMPANY_NAME
+  name: $COMPANY_NAME Customer Agent
+  persona: Professional, helpful, and knowledgeable customer agent who ensures smooth operations and exceptional experiences
+  role: $AGENT_ROLE
+  type: $AGENT_TYPE
+metadata:
+  command: sf agent generate agent-spec
+  created: '$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)'
+  framework: AgentforceDX
+  generated_by: AgentforceDX CLI
+  version: '1.0'
+topics: AI-generated topics will be created at runtime
+EOF
+    
+    if [ $? -eq 0 ]; then
+        print_status "Agent specification generated successfully"
+        print_info "File created: specs/agentSpec.yaml"
+        print_info "This file contains default inputs and will be used for agent creation"
+    else
+        print_error "Failed to generate agent specification"
+        return 1
+    fi
+}
+
+# Help function
+show_help() {
+    echo "AGENTFORCEDX CLI SCRIPT - COMPLETE ADLC IMPLEMENTATION"
+    echo ""
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  --non-interactive, -n    Run in non-interactive mode with default values"
+    echo "  --help, -h              Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $0                      # Interactive mode (prompts for input)"
+    echo "  $0 --non-interactive    # Non-interactive mode (uses defaults)"
+    echo "  $0 -n                   # Short form of non-interactive mode"
+    echo ""
+    echo "Interactive Mode:"
+    echo "  - Prompts for agent type, company name, description, and role"
+    echo "  - Allows customization of all inputs"
+    echo "  - Pauses between steps for review"
+    echo ""
+    echo "Non-Interactive Mode:"
+    echo "  - Uses default values: Customer agent for Coral Cloud Resorts"
+    echo "  - No user input required"
+    echo "  - Runs all phases automatically"
+    echo ""
+    echo "Default Values:"
+    echo "  - Agent Type: Customer"
+    echo "  - Company Name: Coral Cloud Resorts"
+    echo "  - Company Description: Luxury resort providing exceptional guest experiences"
+    echo "  - Agent Role: Customer service agent for resort guests"
+    echo ""
+}
+
 # Main execution
 main() {
+    # Check for help option
+    if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+        show_help
+        exit 0
+    fi
+    
     echo "AGENTFORCEDX CLI SCRIPT - COMPLETE ADLC IMPLEMENTATION"
     echo "This script provides a notebook-like experience using CLI commands"
     echo ""
     
-    # Check prerequisites
-    check_cli
-    
-    echo ""
-    print_info "Starting AgentforceDX ADLC implementation..."
-    echo ""
-    
-    # Run all phases
-    phase1_ideation
-    phase2_development
-    phase3_testing
-    phase4_deployment
-    phase5_monitoring
-    
-    echo ""
-    echo "=== ADLC IMPLEMENTATION COMPLETE ==="
-    print_status "All phases completed successfully"
-    print_info "Your agent is now fully implemented using AgentforceDX"
-    echo ""
-    print_info "Next steps:"
-    echo "  - Review the generated agentSpec.yaml file"
-    echo "  - Test your agent in the Salesforce org"
-    echo "  - Monitor performance and optimize as needed"
-    echo ""
-    print_status "AgentforceDX ADLC implementation complete!"
+    # Check for non-interactive mode
+    if [ "$1" = "--non-interactive" ] || [ "$1" = "-n" ]; then
+        print_info "Running in non-interactive mode"
+        echo ""
+        
+        # Check prerequisites
+        check_cli
+        
+        echo ""
+        print_info "Starting AgentforceDX ADLC implementation..."
+        echo ""
+        
+        # Run all phases with non-interactive mode
+        non_interactive_mode
+        phase2_development
+        phase3_testing
+        phase4_deployment
+        phase5_monitoring
+        
+        echo ""
+        echo "=== ADLC IMPLEMENTATION COMPLETE ==="
+        print_status "All phases completed successfully"
+        print_info "Your agent is now fully implemented using AgentforceDX"
+        echo ""
+        print_info "Next steps:"
+        echo "  - Review the generated agentSpec.yaml file"
+        echo "  - Test your agent in the Salesforce org"
+        echo "  - Monitor performance and optimize as needed"
+        echo ""
+        print_status "AgentforceDX ADLC implementation complete!"
+    else
+        # Check prerequisites
+        check_cli
+        
+        echo ""
+        print_info "Starting AgentforceDX ADLC implementation..."
+        echo ""
+        
+        # Run all phases
+        phase1_ideation
+        phase2_development
+        phase3_testing
+        phase4_deployment
+        phase5_monitoring
+        
+        echo ""
+        echo "=== ADLC IMPLEMENTATION COMPLETE ==="
+        print_status "All phases completed successfully"
+        print_info "Your agent is now fully implemented using AgentforceDX"
+        echo ""
+        print_info "Next steps:"
+        echo "  - Review the generated agentSpec.yaml file"
+        echo "  - Test your agent in the Salesforce org"
+        echo "  - Monitor performance and optimize as needed"
+        echo ""
+        print_status "AgentforceDX ADLC implementation complete!"
+    fi
 }
 
 # Run main function
