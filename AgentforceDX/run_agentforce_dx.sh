@@ -350,10 +350,26 @@ EOF
     print_info "This will create the agent in your Salesforce org"
     echo ""
     
+    # Ask if user wants to preview first
+    read -p "Do you want to preview the agent structure before creating? (y/n): " PREVIEW_CHOICE
+    if [ "$PREVIEW_CHOICE" = "y" ] || [ "$PREVIEW_CHOICE" = "Y" ]; then
+        print_info "Running: sf agent create --preview"
+        sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME" --preview
+        
+        if [ $? -eq 0 ]; then
+            print_status "Agent preview completed"
+            print_info "Preview JSON file generated locally"
+            echo ""
+        else
+            print_error "Failed to preview agent"
+            return 1
+        fi
+    fi
+    
     wait_for_user
     
     print_info "Running: sf agent create"
-    sf agent create --spec specs/agentSpec.yaml --org agentforce-dev
+    sf agent create --spec specs/agentSpec.yaml --name "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
         print_status "Agent created successfully"
@@ -380,7 +396,7 @@ phase3_testing() {
     wait_for_user
     
     print_info "Running: sf agent preview"
-    sf agent preview --agent "Coral Cloud Resorts Customer Agent" --org agentforce-dev
+    sf agent preview --agent "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
         print_status "Agent preview completed"
@@ -405,7 +421,7 @@ phase4_deployment() {
     wait_for_user
     
     print_info "Running: sf agent deploy"
-    sf agent deploy --agent "Coral Cloud Resorts Customer Agent" --org agentforce-dev
+    sf agent deploy --agent "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
         print_status "Agent deployed successfully"
@@ -430,7 +446,7 @@ phase5_monitoring() {
     wait_for_user
     
     print_info "Running: sf agent monitor"
-    sf agent monitor --agent "Coral Cloud Resorts Customer Agent" --org agentforce-dev
+    sf agent monitor --agent "$AGENT_NAME"
     
     if [ $? -eq 0 ]; then
         print_status "Agent monitoring completed"
